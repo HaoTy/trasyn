@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "linearsolver n3",
+    "n": 3,
+    "seed": 0,
+    "unitary_distance": 0.0048318741277863855,
+    "state_fidelity": 0.9999781742512163,
+    "num_nontrivial_rotations": 2,
+    "time": 0.7181065082550049,
+    "num_gates": {
+        "s": 62,
+        "h": 48,
+        "t": 36,
+        "cx": 4,
+        "x": 2
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.9998815801405013,
+        "1e-05": 0.9990128176073239,
+        "0.0001": 0.9903827857597556
+    },
+    "t_depth": 36,
+    "optimized_t_count": 36,
+    "optimized_num_gates": {
+        "s": 62,
+        "h": 48,
+        "t": 36,
+        "cx": 4,
+        "x": 2
+    },
+    "optimized_t_depth": 36
+}

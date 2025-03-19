@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "qaoa p4 s4 n4",
+    "n": 4,
+    "seed": 0,
+    "unitary_distance": 0.023646995367135597,
+    "state_fidelity": 0.999716627580903,
+    "num_nontrivial_rotations": 39,
+    "time": 3.2720859050750732,
+    "num_gates": {
+        "h": 856,
+        "t": 798,
+        "s": 434,
+        "cx": 48,
+        "x": 19
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.9982968958162868,
+        "1e-05": 0.9856214209165775,
+        "0.0001": 0.868445406279011
+    },
+    "t_depth": 596,
+    "optimized_t_count": 764,
+    "optimized_num_gates": {
+        "h": 856,
+        "t": 764,
+        "s": 443,
+        "cx": 48,
+        "x": 19
+    },
+    "optimized_t_depth": 567
+}

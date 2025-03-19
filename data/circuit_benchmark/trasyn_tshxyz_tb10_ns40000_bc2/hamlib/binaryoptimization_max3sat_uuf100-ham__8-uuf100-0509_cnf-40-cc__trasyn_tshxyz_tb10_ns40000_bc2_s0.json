@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "binaryoptimization max3sat uuf100-ham  8-uuf100-0509 cnf-40-cc ",
+    "n": 40,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 206,
+    "time": 1.5824880599975586,
+    "num_gates": {
+        "h": 4330,
+        "t": 4102,
+        "x": 891,
+        "y": 760,
+        "cx": 315,
+        "s": 129,
+        "z": 12
+    },
+    "noisy_fidelity": null,
+    "t_depth": 1020,
+    "optimized_t_count": 4004,
+    "optimized_num_gates": {
+        "h": 4330,
+        "t": 4004,
+        "x": 1651,
+        "s": 938,
+        "sdg": 760,
+        "cx": 315,
+        "z": 12
+    },
+    "optimized_t_depth": 992
+}

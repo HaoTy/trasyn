@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "discreteoptimization maxkcut ham-binary-graph-regular k-5  reg-5 n-10 rinst-07 ",
+    "n": 30,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 1294,
+    "time": 0.6876194477081299,
+    "num_gates": {
+        "h": 8147,
+        "t": 7750,
+        "cx": 1556,
+        "y": 1310,
+        "x": 1270,
+        "z": 361,
+        "s": 24
+    },
+    "noisy_fidelity": null,
+    "t_depth": 3014,
+    "optimized_t_count": 7150,
+    "optimized_num_gates": {
+        "h": 8147,
+        "t": 7150,
+        "x": 2580,
+        "cx": 1556,
+        "s": 1334,
+        "sdg": 1310,
+        "z": 361
+    },
+    "optimized_t_depth": 2756
+}

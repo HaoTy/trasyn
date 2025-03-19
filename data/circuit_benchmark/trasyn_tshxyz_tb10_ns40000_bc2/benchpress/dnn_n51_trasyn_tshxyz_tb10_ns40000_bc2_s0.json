@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "dnn n51",
+    "n": 51,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 188,
+    "time": 11.125617265701294,
+    "num_gates": {
+        "h": 3836,
+        "t": 3762,
+        "y": 812,
+        "x": 645,
+        "cx": 388,
+        "s": 175,
+        "z": 45
+    },
+    "noisy_fidelity": null,
+    "t_depth": 1419,
+    "optimized_t_count": 3710,
+    "optimized_num_gates": {
+        "h": 3836,
+        "t": 3710,
+        "x": 1457,
+        "s": 1003,
+        "sdg": 812,
+        "cx": 388,
+        "z": 45
+    },
+    "optimized_t_depth": 1410
+}

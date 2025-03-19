@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "binaryoptimization qmaxcut graph-gnp k-4  gnp-k 4 n-6 rinst-15 ",
+    "n": 6,
+    "seed": 0,
+    "unitary_distance": 0.013427882098360001,
+    "state_fidelity": 0.9999703725333412,
+    "num_nontrivial_rotations": 45,
+    "time": 0.8552489280700684,
+    "num_gates": {
+        "h": 1139,
+        "s": 1088,
+        "t": 990,
+        "cx": 71,
+        "x": 5
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.997959620434497,
+        "1e-05": 0.9800553538133009,
+        "0.0001": 0.8187438874295614
+    },
+    "t_depth": 528,
+    "optimized_t_count": 984,
+    "optimized_num_gates": {
+        "h": 1139,
+        "s": 1091,
+        "t": 984,
+        "cx": 71,
+        "x": 5
+    },
+    "optimized_t_depth": 524
+}

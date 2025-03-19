@@ -1,0 +1,19 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "condensedmatter tfim tfim  graph-2d-grid-nonpbc-qubitnodes lx-19 ly-19 h-5 ",
+    "n": 361,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 1045,
+    "time": 1.3042311668395996,
+    "num_gates": {
+        "h": 25968,
+        "t": 24358,
+        "s": 13683,
+        "cx": 1611,
+        "x": 631
+    },
+    "noisy_fidelity": null,
+    "t_depth": 404
+}

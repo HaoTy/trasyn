@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "843",
+    "benchmark_file": "data/qasm_transpiled_u3/hamlib/discreteoptimization_maxkcut_ham-unary-color02-ash608gpia_k-3__ash608gpia_n-160_rinst-1__transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 1614,
+    "n": 480,
+    "num_gates": {
+        "h": 14538,
+        "tdg": 8304,
+        "t": 4935,
+        "cx": 2457,
+        "s": 1764,
+        "sdg": 1440
+    },
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 1614,
+    "time": 72.90358877182007,
+    "benchmark_id": "discreteoptimization_maxkcut_ham-unary-color02-ash608gpia_k-3__ash608gpia_n-160_rinst-1__transpiled_u3"
+}

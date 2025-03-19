@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "qugan n111",
+    "n": 111,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 428,
+    "time": 25.324584245681763,
+    "num_gates": {
+        "h": 8718,
+        "t": 8570,
+        "y": 1802,
+        "x": 1454,
+        "cx": 872,
+        "s": 355,
+        "z": 91
+    },
+    "noisy_fidelity": null,
+    "t_depth": 3129,
+    "optimized_t_count": 8354,
+    "optimized_num_gates": {
+        "h": 8718,
+        "t": 8354,
+        "x": 3256,
+        "s": 2229,
+        "sdg": 1802,
+        "cx": 872,
+        "z": 91
+    },
+    "optimized_t_depth": 3057
+}

@@ -1,0 +1,19 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "chemistry vibrational all-vib-fccf  enc gray dvalues 4-4-4-4-4-4-4 ",
+    "n": 14,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.9760864710596721,
+    "num_nontrivial_rotations": 991,
+    "time": 70.93778491020203,
+    "num_gates": {
+        "s": 22517,
+        "h": 22227,
+        "t": 19830,
+        "cx": 1848,
+        "x": 336
+    },
+    "noisy_fidelity": null,
+    "t_depth": 11440
+}

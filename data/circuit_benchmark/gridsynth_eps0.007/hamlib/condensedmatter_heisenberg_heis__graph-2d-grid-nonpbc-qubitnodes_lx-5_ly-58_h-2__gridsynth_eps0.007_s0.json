@@ -1,0 +1,19 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "condensedmatter heisenberg heis  graph-2d-grid-nonpbc-qubitnodes lx-5 ly-58 h-2 ",
+    "n": 290,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 1841,
+    "time": 1.5200371742248535,
+    "num_gates": {
+        "h": 47905,
+        "s": 45011,
+        "t": 42444,
+        "cx": 7301,
+        "x": 1180
+    },
+    "noisy_fidelity": null,
+    "t_depth": 2082
+}

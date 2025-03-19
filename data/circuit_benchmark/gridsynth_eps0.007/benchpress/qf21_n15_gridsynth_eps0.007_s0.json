@@ -1,0 +1,29 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "qf21 n15",
+    "n": 15,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.9977786114449871,
+    "num_nontrivial_rotations": 72,
+    "time": 3.3347551822662354,
+    "num_gates": {
+        "h": 1267,
+        "t": 1251,
+        "s": 750,
+        "cx": 115,
+        "x": 28,
+        "barrier": 3
+    },
+    "noisy_fidelity": null,
+    "t_depth": 695,
+    "optimized_t_count": 1217,
+    "optimized_num_gates": {
+        "h": 1267,
+        "t": 1217,
+        "s": 767,
+        "cx": 115,
+        "x": 28
+    },
+    "optimized_t_depth": 678
+}

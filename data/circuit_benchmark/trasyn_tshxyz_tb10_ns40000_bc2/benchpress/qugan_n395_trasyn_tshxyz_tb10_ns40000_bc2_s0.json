@@ -1,0 +1,21 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "qugan n395",
+    "n": 395,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 1531,
+    "time": 90.2198691368103,
+    "num_gates": {
+        "h": 31241,
+        "t": 30815,
+        "y": 6537,
+        "x": 5358,
+        "cx": 3144,
+        "s": 1272,
+        "z": 320
+    },
+    "noisy_fidelity": null,
+    "t_depth": 11125
+}

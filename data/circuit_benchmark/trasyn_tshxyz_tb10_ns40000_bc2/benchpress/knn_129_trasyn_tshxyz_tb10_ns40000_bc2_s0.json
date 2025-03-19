@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "knn 129",
+    "n": 129,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 123,
+    "time": 7.6214752197265625,
+    "num_gates": {
+        "t": 2814,
+        "h": 2477,
+        "y": 851,
+        "cx": 512,
+        "x": 400,
+        "s": 114,
+        "z": 23
+    },
+    "noisy_fidelity": null,
+    "t_depth": 214,
+    "optimized_t_count": 2750,
+    "optimized_num_gates": {
+        "t": 2750,
+        "h": 2477,
+        "x": 1251,
+        "s": 997,
+        "sdg": 851,
+        "cx": 512,
+        "z": 23
+    },
+    "optimized_t_depth": 213
+}

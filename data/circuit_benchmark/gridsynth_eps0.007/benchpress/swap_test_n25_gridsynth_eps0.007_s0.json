@@ -1,0 +1,28 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "swap test n25",
+    "n": 25,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.9996156570883299,
+    "num_nontrivial_rotations": 24,
+    "time": 2.640991449356079,
+    "num_gates": {
+        "s": 735,
+        "h": 564,
+        "t": 560,
+        "cx": 96,
+        "x": 10
+    },
+    "noisy_fidelity": null,
+    "t_depth": 57,
+    "optimized_t_count": 548,
+    "optimized_num_gates": {
+        "s": 741,
+        "h": 564,
+        "t": 548,
+        "cx": 96,
+        "x": 10
+    },
+    "optimized_t_depth": 57
+}

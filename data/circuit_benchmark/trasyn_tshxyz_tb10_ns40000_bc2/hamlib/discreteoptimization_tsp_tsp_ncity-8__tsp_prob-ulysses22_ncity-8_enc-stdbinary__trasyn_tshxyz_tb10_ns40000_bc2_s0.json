@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "discreteoptimization tsp tsp ncity-8  tsp prob-ulysses22 ncity-8 enc-stdbinary ",
+    "n": 24,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.994798308259169,
+    "num_nontrivial_rotations": 448,
+    "time": 2.1121976375579834,
+    "num_gates": {
+        "h": 9176,
+        "t": 8888,
+        "y": 1624,
+        "x": 1568,
+        "cx": 497,
+        "s": 432,
+        "z": 128
+    },
+    "noisy_fidelity": null,
+    "t_depth": 1653,
+    "optimized_t_count": 8804,
+    "optimized_num_gates": {
+        "h": 9176,
+        "t": 8804,
+        "x": 3192,
+        "s": 2080,
+        "sdg": 1624,
+        "cx": 497,
+        "z": 128
+    },
+    "optimized_t_depth": 1643
+}

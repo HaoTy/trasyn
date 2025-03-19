@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "chemistry vibrational all-vib-h2co  mu y prime enc unary dvalues 16-16-16-16-16-16 ",
+    "n": 32,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 53,
+    "time": 4.55185604095459,
+    "num_gates": {
+        "h": 1087,
+        "t": 1027,
+        "y": 195,
+        "x": 186,
+        "cx": 164,
+        "s": 79,
+        "z": 39
+    },
+    "noisy_fidelity": null,
+    "t_depth": 139,
+    "optimized_t_count": 1017,
+    "optimized_num_gates": {
+        "h": 1087,
+        "t": 1017,
+        "x": 381,
+        "s": 277,
+        "sdg": 195,
+        "cx": 164,
+        "z": 39
+    },
+    "optimized_t_depth": 137
+}

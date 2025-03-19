@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "784",
+    "benchmark_file": "data/qasm_transpiled_u3/hamlib/chemistry_standard_bh__ham_jw-10__transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 97,
+    "n": 10,
+    "num_gates": {
+        "cx": 467,
+        "h": 229,
+        "s": 139,
+        "sdg": 80,
+        "t": 25,
+        "tdg": 20
+    },
+    "unitary_distance": 0.29485197884590536,
+    "state_fidelity": 0.9941921704363114,
+    "num_nontrivial_rotations": 97,
+    "time": 80.51187491416931,
+    "benchmark_id": "chemistry_standard_bh__ham_jw-10__transpiled_u3"
+}

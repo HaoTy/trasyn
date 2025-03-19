@@ -1,0 +1,21 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "discreteoptimization tsp tsp ncity-16  tsp prob-fl417 ncity-16 enc-stdbinary ",
+    "n": 64,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 3776,
+    "time": 8.49167776107788,
+    "num_gates": {
+        "h": 74672,
+        "t": 72576,
+        "y": 13168,
+        "x": 12480,
+        "cx": 4130,
+        "s": 2592,
+        "z": 1104
+    },
+    "noisy_fidelity": null,
+    "t_depth": 13849
+}

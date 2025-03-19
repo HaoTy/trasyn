@@ -1,0 +1,31 @@
+{
+    "seed": 927,
+    "angles": [
+        5.056667781627629,
+        1.8724500458013882,
+        3.9080156413268785
+    ],
+    "data": [
+        {
+            "epsilon": 0.1,
+            "time": 0.2668628692626953,
+            "seqstr": "hthtshtshththththtshtshththththtxssshtshtshthtshtshtshthtshthtshtshtshthtshssshtss",
+            "t_count": 29,
+            "error": 0.04774084367688815
+        },
+        {
+            "epsilon": 0.01,
+            "time": 0.27928781509399414,
+            "seqstr": "tshtshthtshththtshtshthtshthtshthtshthtshtshtshthtshthtshthtshthtshhhthththtshththtshtshththththtshtshththtshthththsshthtshtshtshthtshthththtshththtshththtshtshththtshtshtshtshtshtsss",
+            "t_count": 71,
+            "error": 0.006499673083305882
+        },
+        {
+            "epsilon": 0.001,
+            "time": 0.27792978286743164,
+            "seqstr": "shtshthtshththtshtshtshthththththtshththtshtshtshtshtshtshtshththtshtshththtshthtshthththhtshtshtshththththtshthtshthtshthththtshtshththtshtshtshtshtshthtshthththththtxhhthtshththtshtshtshtshtshththtshthtshthththtshtshthtshtshththtshthtshththththtshthtshsss",
+            "t_count": 101,
+            "error": 0.0005197148107064626
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "805",
+    "benchmark_file": "data/qasm_transpiled_u3/hamlib/chemistry_vibrational_all-vib-cyclo_propene__mu_x_prime_enc_stdbinary_dvalues_8-8-8-8-8-8-8-8-8-4-4-4-4-4-4__transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 35,
+    "n": 11,
+    "num_gates": {
+        "h": 51,
+        "cx": 30,
+        "sdg": 27,
+        "t": 17,
+        "s": 15,
+        "tdg": 10
+    },
+    "unitary_distance": null,
+    "state_fidelity": 0.9842292632780594,
+    "num_nontrivial_rotations": 35,
+    "time": 34.08126759529114,
+    "benchmark_id": "chemistry_vibrational_all-vib-cyclo_propene__mu_x_prime_enc_stdbinary_dvalues_8-8-8-8-8-8-8-8-8-4-4-4-4-4-4__transpiled_u3"
+}

@@ -1,0 +1,28 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "discreteoptimization tsp tsp ncity-5  tsp prob-ts225 ncity-5 enc-unary ",
+    "n": 25,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.9980113751030794,
+    "num_nontrivial_rotations": 125,
+    "time": 2.2011759281158447,
+    "num_gates": {
+        "h": 2419,
+        "t": 2310,
+        "s": 1415,
+        "cx": 213,
+        "x": 69
+    },
+    "noisy_fidelity": null,
+    "t_depth": 383,
+    "optimized_t_count": 2290,
+    "optimized_num_gates": {
+        "h": 2419,
+        "t": 2290,
+        "s": 1418,
+        "cx": 213,
+        "x": 69
+    },
+    "optimized_t_depth": 381
+}

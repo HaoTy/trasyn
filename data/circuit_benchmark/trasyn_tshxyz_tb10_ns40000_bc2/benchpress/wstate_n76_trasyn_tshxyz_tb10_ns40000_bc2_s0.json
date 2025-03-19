@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "wstate n76",
+    "n": 76,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 148,
+    "time": 5.4278175830841064,
+    "num_gates": {
+        "t": 2866,
+        "h": 2845,
+        "x": 546,
+        "y": 474,
+        "cx": 150,
+        "s": 28,
+        "z": 24
+    },
+    "noisy_fidelity": null,
+    "t_depth": 1453,
+    "optimized_t_count": 2860,
+    "optimized_num_gates": {
+        "t": 2860,
+        "h": 2845,
+        "x": 1020,
+        "s": 503,
+        "sdg": 474,
+        "cx": 150,
+        "z": 24
+    },
+    "optimized_t_depth": 1450
+}

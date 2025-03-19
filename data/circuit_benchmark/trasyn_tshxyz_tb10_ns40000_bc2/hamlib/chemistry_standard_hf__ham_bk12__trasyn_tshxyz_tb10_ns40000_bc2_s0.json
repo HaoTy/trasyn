@@ -1,0 +1,36 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "chemistry standard hf  ham bk12 ",
+    "n": 12,
+    "seed": 0,
+    "unitary_distance": 0.13808015578370922,
+    "state_fidelity": 0.9942201628161106,
+    "num_nontrivial_rotations": 308,
+    "time": 30.796266078948975,
+    "num_gates": {
+        "h": 3959,
+        "t": 3475,
+        "cx": 1094,
+        "y": 777,
+        "s": 543,
+        "x": 511,
+        "z": 100
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.9882186511928516,
+        "1e-05": 0.9358443039101876,
+        "0.0001": 0.5449482109052798
+    },
+    "t_depth": 1949,
+    "optimized_t_count": 3431,
+    "optimized_num_gates": {
+        "h": 3959,
+        "t": 3431,
+        "s": 1330,
+        "x": 1288,
+        "cx": 1094,
+        "sdg": 777,
+        "z": 100
+    },
+    "optimized_t_depth": 1922
+}

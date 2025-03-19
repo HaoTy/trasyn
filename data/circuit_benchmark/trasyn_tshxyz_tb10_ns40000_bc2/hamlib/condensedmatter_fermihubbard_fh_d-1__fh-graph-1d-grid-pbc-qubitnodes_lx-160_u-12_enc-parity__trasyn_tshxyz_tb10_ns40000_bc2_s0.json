@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "condensedmatter fermihubbard fh d-1  fh-graph-1d-grid-pbc-qubitnodes lx-160 u-12 enc-parity ",
+    "n": 320,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 865,
+    "time": 6.708430051803589,
+    "num_gates": {
+        "h": 18329,
+        "t": 16820,
+        "cx": 4090,
+        "x": 3345,
+        "y": 1979,
+        "s": 1492,
+        "z": 869
+    },
+    "noisy_fidelity": null,
+    "t_depth": 392,
+    "optimized_t_count": 16730,
+    "optimized_num_gates": {
+        "h": 18329,
+        "t": 16730,
+        "x": 5324,
+        "cx": 4090,
+        "s": 3497,
+        "sdg": 1979,
+        "z": 869
+    },
+    "optimized_t_depth": 387
+}

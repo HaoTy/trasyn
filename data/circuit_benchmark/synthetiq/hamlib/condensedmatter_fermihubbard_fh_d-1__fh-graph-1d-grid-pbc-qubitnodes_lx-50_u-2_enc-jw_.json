@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "830",
+    "benchmark_file": "data/qasm_transpiled_u3/hamlib/condensedmatter_fermihubbard_fh_d-1__fh-graph-1d-grid-pbc-qubitnodes_lx-50_u-2_enc-jw__transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 294,
+    "n": 100,
+    "num_gates": {
+        "h": 3694,
+        "cx": 2160,
+        "tdg": 1772,
+        "s": 1035,
+        "t": 1000,
+        "sdg": 981
+    },
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 294,
+    "time": 421.8503911495209,
+    "benchmark_id": "condensedmatter_fermihubbard_fh_d-1__fh-graph-1d-grid-pbc-qubitnodes_lx-50_u-2_enc-jw__transpiled_u3"
+}

@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "850",
+    "benchmark_file": "data/qasm_transpiled_u3/hamlib/discreteoptimization_tsp_tsp_ncity-5__tsp_prob-ts225_ncity-5_enc-unary__transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 125,
+    "n": 25,
+    "num_gates": {
+        "h": 940,
+        "tdg": 464,
+        "t": 361,
+        "cx": 213,
+        "s": 153,
+        "sdg": 82
+    },
+    "unitary_distance": null,
+    "state_fidelity": 0.7496327571142283,
+    "num_nontrivial_rotations": 125,
+    "time": 124.1895182132721,
+    "benchmark_id": "discreteoptimization_tsp_tsp_ncity-5__tsp_prob-ts225_ncity-5_enc-unary__transpiled_u3"
+}

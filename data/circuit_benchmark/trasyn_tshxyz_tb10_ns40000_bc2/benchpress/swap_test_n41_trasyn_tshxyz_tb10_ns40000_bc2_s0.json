@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "swap test n41",
+    "n": 41,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 39,
+    "time": 2.6025636196136475,
+    "num_gates": {
+        "t": 853,
+        "h": 752,
+        "y": 252,
+        "cx": 160,
+        "x": 131,
+        "s": 20,
+        "z": 7
+    },
+    "noisy_fidelity": null,
+    "t_depth": 82,
+    "optimized_t_count": 833,
+    "optimized_num_gates": {
+        "t": 833,
+        "h": 752,
+        "x": 383,
+        "s": 282,
+        "sdg": 252,
+        "cx": 160,
+        "z": 7
+    },
+    "optimized_t_depth": 81
+}

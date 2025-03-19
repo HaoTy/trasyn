@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "chemistry vibrational all-vib-fccf  enc gray dvalues 4-4-4-4-4-4-4 ",
+    "n": 14,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.9672980532920665,
+    "num_nontrivial_rotations": 945,
+    "time": 56.373560428619385,
+    "num_gates": {
+        "h": 18599,
+        "t": 18127,
+        "y": 3346,
+        "x": 3202,
+        "cx": 1848,
+        "s": 785,
+        "z": 222
+    },
+    "noisy_fidelity": null,
+    "t_depth": 10274,
+    "optimized_t_count": 17901,
+    "optimized_num_gates": {
+        "h": 18599,
+        "t": 17901,
+        "x": 6548,
+        "s": 4182,
+        "sdg": 3346,
+        "cx": 1848,
+        "z": 222
+    },
+    "optimized_t_depth": 10150
+}

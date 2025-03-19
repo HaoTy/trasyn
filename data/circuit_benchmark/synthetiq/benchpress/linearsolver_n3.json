@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "745",
+    "benchmark_file": "data/qasm_transpiled_u3/benchpress/linearsolver_n3_transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 2,
+    "n": 3,
+    "num_gates": {
+        "h": 22,
+        "t": 10,
+        "tdg": 8,
+        "cx": 4,
+        "sdg": 3,
+        "s": 2
+    },
+    "unitary_distance": 0.13153738579080052,
+    "state_fidelity": 0.9832853953661845,
+    "num_nontrivial_rotations": 2,
+    "time": 13.53458833694458,
+    "benchmark_id": "linearsolver_n3_transpiled_u3"
+}

@@ -1,0 +1,19 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "binaryoptimization qmaxcut graph-gnp k-5  gnp-k 5 n-60 rinst-19 ",
+    "n": 60,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 1971,
+    "time": 1.565643548965454,
+    "num_gates": {
+        "s": 54296,
+        "h": 52522,
+        "t": 43362,
+        "cx": 13240,
+        "x": 1971
+    },
+    "noisy_fidelity": null,
+    "t_depth": 22418
+}

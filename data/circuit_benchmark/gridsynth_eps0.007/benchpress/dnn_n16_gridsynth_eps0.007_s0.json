@@ -1,0 +1,28 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "dnn n16",
+    "n": 16,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.9982513683191647,
+    "num_nontrivial_rotations": 576,
+    "time": 4.6051435470581055,
+    "num_gates": {
+        "s": 18040,
+        "h": 14840,
+        "t": 13232,
+        "cx": 384,
+        "x": 296
+    },
+    "noisy_fidelity": null,
+    "t_depth": 1109,
+    "optimized_t_count": 12640,
+    "optimized_num_gates": {
+        "s": 18192,
+        "h": 14840,
+        "t": 12640,
+        "cx": 384,
+        "x": 296
+    },
+    "optimized_t_depth": 1073
+}

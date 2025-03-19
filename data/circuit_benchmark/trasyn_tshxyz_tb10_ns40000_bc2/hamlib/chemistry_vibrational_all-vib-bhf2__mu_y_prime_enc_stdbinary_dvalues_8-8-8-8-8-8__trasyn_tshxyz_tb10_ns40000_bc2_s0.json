@@ -1,0 +1,36 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "chemistry vibrational all-vib-bhf2  mu y prime enc stdbinary dvalues 8-8-8-8-8-8 ",
+    "n": 6,
+    "seed": 0,
+    "unitary_distance": 0.028002707178144313,
+    "state_fidelity": 0.9994693880469252,
+    "num_nontrivial_rotations": 15,
+    "time": 1.707214593887329,
+    "num_gates": {
+        "h": 219,
+        "t": 208,
+        "y": 43,
+        "x": 40,
+        "s": 17,
+        "cx": 16,
+        "z": 10
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.9991459108671661,
+        "1e-05": 0.9962399600644232,
+        "0.0001": 0.967702881802565
+    },
+    "t_depth": 122,
+    "optimized_t_count": 202,
+    "optimized_num_gates": {
+        "h": 219,
+        "t": 202,
+        "x": 83,
+        "s": 62,
+        "sdg": 43,
+        "cx": 16,
+        "z": 10
+    },
+    "optimized_t_depth": 118
+}

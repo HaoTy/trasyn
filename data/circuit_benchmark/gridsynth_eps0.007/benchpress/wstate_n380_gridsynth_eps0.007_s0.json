@@ -1,0 +1,19 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "wstate n380",
+    "n": 380,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 756,
+    "time": 40.552072048187256,
+    "num_gates": {
+        "s": 20506,
+        "h": 16382,
+        "t": 14662,
+        "cx": 758,
+        "x": 196
+    },
+    "noisy_fidelity": null,
+    "t_depth": 7346
+}

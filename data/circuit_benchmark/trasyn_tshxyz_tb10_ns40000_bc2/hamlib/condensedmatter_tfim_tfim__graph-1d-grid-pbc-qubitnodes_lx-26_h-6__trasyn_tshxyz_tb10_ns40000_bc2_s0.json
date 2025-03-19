@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "condensedmatter tfim tfim  graph-1d-grid-pbc-qubitnodes lx-26 h-6 ",
+    "n": 26,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.999202116641833,
+    "num_nontrivial_rotations": 36,
+    "time": 0.35638427734375,
+    "num_gates": {
+        "h": 726,
+        "t": 696,
+        "x": 107,
+        "y": 105,
+        "cx": 60,
+        "s": 33,
+        "z": 16
+    },
+    "noisy_fidelity": null,
+    "t_depth": 59,
+    "optimized_t_count": 696,
+    "optimized_num_gates": {
+        "h": 726,
+        "t": 696,
+        "x": 212,
+        "s": 138,
+        "sdg": 105,
+        "cx": 60,
+        "z": 16
+    },
+    "optimized_t_depth": 59
+}

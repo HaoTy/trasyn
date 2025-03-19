@@ -1,0 +1,36 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "chemistry vibrational all-vib-cyclo propene  mu x prime enc stdbinary dvalues 8-8-8-8-8-8-8-8-8-4-4-4-4-4-4 ",
+    "n": 11,
+    "seed": 0,
+    "unitary_distance": 0.03389690696949554,
+    "state_fidelity": 0.9995535564394539,
+    "num_nontrivial_rotations": 35,
+    "time": 2.728222370147705,
+    "num_gates": {
+        "h": 603,
+        "t": 586,
+        "y": 104,
+        "x": 83,
+        "cx": 30,
+        "s": 27,
+        "z": 18
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.9986537995776231,
+        "1e-05": 0.990594306712221,
+        "0.0001": 0.9136716903462894
+    },
+    "t_depth": 119,
+    "optimized_t_count": 576,
+    "optimized_num_gates": {
+        "h": 603,
+        "t": 576,
+        "x": 187,
+        "s": 133,
+        "sdg": 104,
+        "cx": 30,
+        "z": 18
+    },
+    "optimized_t_depth": 118
+}

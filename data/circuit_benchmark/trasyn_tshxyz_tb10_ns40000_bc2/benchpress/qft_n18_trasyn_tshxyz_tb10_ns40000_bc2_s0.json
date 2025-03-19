@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "qft n18",
+    "n": 18,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.9941606207131615,
+    "num_nontrivial_rotations": 168,
+    "time": 2.9529664516448975,
+    "num_gates": {
+        "h": 2916,
+        "t": 2838,
+        "y": 617,
+        "x": 439,
+        "cx": 306,
+        "s": 82,
+        "z": 32
+    },
+    "noisy_fidelity": null,
+    "t_depth": 944,
+    "optimized_t_count": 2730,
+    "optimized_num_gates": {
+        "h": 2916,
+        "t": 2730,
+        "x": 1056,
+        "s": 724,
+        "sdg": 617,
+        "cx": 306,
+        "z": 32
+    },
+    "optimized_t_depth": 929
+}

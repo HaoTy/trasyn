@@ -1,0 +1,36 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "chemistry standard lih  ham parity-4 ",
+    "n": 4,
+    "seed": 0,
+    "unitary_distance": 0.02416584167444857,
+    "state_fidelity": 0.9999125539119019,
+    "num_nontrivial_rotations": 16,
+    "time": 1.6253156661987305,
+    "num_gates": {
+        "h": 201,
+        "t": 189,
+        "y": 47,
+        "cx": 27,
+        "x": 25,
+        "s": 15,
+        "z": 5
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.9996884838521229,
+        "1e-05": 0.9976746493463661,
+        "0.0001": 0.9778104188759044
+    },
+    "t_depth": 116,
+    "optimized_t_count": 185,
+    "optimized_num_gates": {
+        "h": 201,
+        "t": 185,
+        "x": 72,
+        "s": 62,
+        "sdg": 47,
+        "cx": 27,
+        "z": 5
+    },
+    "optimized_t_depth": 115
+}

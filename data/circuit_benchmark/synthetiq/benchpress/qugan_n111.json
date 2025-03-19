@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "754",
+    "benchmark_file": "data/qasm_transpiled_u3/benchpress/qugan_n111_transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 428,
+    "n": 111,
+    "num_gates": {
+        "h": 2843,
+        "t": 1395,
+        "tdg": 1391,
+        "cx": 872,
+        "s": 521,
+        "sdg": 317
+    },
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 428,
+    "time": 2008.8957805633545,
+    "benchmark_id": "qugan_n111_transpiled_u3"
+}

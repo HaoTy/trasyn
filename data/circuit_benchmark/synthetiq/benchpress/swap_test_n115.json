@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "758",
+    "benchmark_file": "data/qasm_transpiled_u3/benchpress/swap_test_n115_transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 113,
+    "n": 115,
+    "num_gates": {
+        "h": 772,
+        "t": 546,
+        "tdg": 485,
+        "cx": 456,
+        "s": 80,
+        "sdg": 76
+    },
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 113,
+    "time": 501.8200604915619,
+    "benchmark_id": "swap_test_n115_transpiled_u3"
+}

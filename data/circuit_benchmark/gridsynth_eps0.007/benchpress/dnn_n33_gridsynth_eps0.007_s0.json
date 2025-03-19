@@ -1,0 +1,28 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "dnn n33",
+    "n": 33,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 150,
+    "time": 15.605005264282227,
+    "num_gates": {
+        "h": 3405,
+        "s": 3224,
+        "t": 3193,
+        "cx": 246,
+        "x": 62
+    },
+    "noisy_fidelity": null,
+    "t_depth": 1070,
+    "optimized_t_count": 3107,
+    "optimized_num_gates": {
+        "h": 3405,
+        "s": 3250,
+        "t": 3107,
+        "cx": 246,
+        "x": 62
+    },
+    "optimized_t_depth": 1041
+}

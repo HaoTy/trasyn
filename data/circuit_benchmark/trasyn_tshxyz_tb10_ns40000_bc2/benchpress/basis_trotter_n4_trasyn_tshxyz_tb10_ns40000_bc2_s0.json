@@ -1,0 +1,36 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "basis trotter n4",
+    "n": 4,
+    "seed": 0,
+    "unitary_distance": 0.22152673518677676,
+    "state_fidelity": 0.9824114961107587,
+    "num_nontrivial_rotations": 213,
+    "time": 5.2626869678497314,
+    "num_gates": {
+        "h": 4113,
+        "t": 3741,
+        "y": 809,
+        "x": 714,
+        "cx": 582,
+        "s": 361,
+        "z": 165
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.9779752250430818,
+        "1e-05": 0.9390672430590691,
+        "0.0001": 0.6347170358802193
+    },
+    "t_depth": 1834,
+    "optimized_t_count": 3643,
+    "optimized_num_gates": {
+        "h": 4113,
+        "t": 3643,
+        "x": 1523,
+        "s": 1191,
+        "sdg": 809,
+        "cx": 582,
+        "z": 165
+    },
+    "optimized_t_depth": 1793
+}

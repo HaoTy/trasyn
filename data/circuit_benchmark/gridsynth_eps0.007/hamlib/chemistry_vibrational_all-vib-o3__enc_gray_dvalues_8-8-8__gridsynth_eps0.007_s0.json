@@ -1,0 +1,23 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "chemistry vibrational all-vib-o3  enc gray dvalues 8-8-8 ",
+    "n": 9,
+    "seed": 0,
+    "unitary_distance": 0.24303358661382468,
+    "state_fidelity": 0.9402283990359329,
+    "num_nontrivial_rotations": 2728,
+    "time": 156.67796206474304,
+    "num_gates": {
+        "h": 60046,
+        "s": 57854,
+        "t": 54014,
+        "cx": 3125,
+        "x": 940
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.8249670411787975,
+        "1e-05": 0.2556490305086412,
+        "0.0001": 0.003419592208339888
+    },
+    "t_depth": 24945
+}

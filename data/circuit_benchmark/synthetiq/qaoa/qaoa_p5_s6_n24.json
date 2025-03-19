@@ -1,0 +1,14 @@
+{
+    "benchmark_id": "qaoa_p5_s6_n24_tn_tb11_ns100000_bc2_s0",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "benchmark_name": "qaoa p5 s6 n24 tn tb11 ns100000 bc2 s0",
+    "n": 24,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 196,
+    "num_gates": null
+}

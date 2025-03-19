@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "1265",
+    "benchmark_file": "data/qasm_transpiled_u3/qaoa/qaoa_p2_s1_n26_transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 87,
+    "n": 26,
+    "num_gates": {
+        "h": 554,
+        "t": 267,
+        "tdg": 253,
+        "cx": 156,
+        "sdg": 56,
+        "s": 50
+    },
+    "unitary_distance": null,
+    "state_fidelity": 0.8326942725524998,
+    "num_nontrivial_rotations": 87,
+    "time": 359.1964201927185,
+    "benchmark_id": "qaoa_p2_s1_n26_transpiled_u3"
+}

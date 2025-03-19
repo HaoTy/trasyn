@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "803",
+    "benchmark_file": "data/qasm_transpiled_u3/hamlib/chemistry_vibrational_all-vib-c2h__mu_z_prime_enc_gray_dvalues_4-4-4-4__transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 8,
+    "n": 4,
+    "num_gates": {
+        "h": 13,
+        "t": 5,
+        "tdg": 4,
+        "cx": 4,
+        "sdg": 2,
+        "s": 1
+    },
+    "unitary_distance": 0.10523321653729738,
+    "state_fidelity": 0.9967567561100027,
+    "num_nontrivial_rotations": 8,
+    "time": 10.812652349472046,
+    "benchmark_id": "chemistry_vibrational_all-vib-c2h__mu_z_prime_enc_gray_dvalues_4-4-4-4__transpiled_u3"
+}

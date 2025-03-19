@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "737",
+    "benchmark_file": "data/qasm_transpiled_u3/benchpress/grover_n4_transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 18,
+    "n": 4,
+    "num_gates": {
+        "h": 133,
+        "tdg": 84,
+        "t": 60,
+        "cx": 52,
+        "sdg": 40,
+        "s": 4
+    },
+    "unitary_distance": 0.22615871190778716,
+    "state_fidelity": 0.9877975480266158,
+    "num_nontrivial_rotations": 18,
+    "time": 7.796966791152954,
+    "benchmark_id": "grover_n4_transpiled_u3"
+}

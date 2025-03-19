@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "chemistry standard li2  ham jw14 ",
+    "n": 14,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.998404922337951,
+    "num_nontrivial_rotations": 113,
+    "time": 32.582953691482544,
+    "num_gates": {
+        "h": 2829,
+        "t": 1958,
+        "cx": 1780,
+        "s": 967,
+        "y": 450,
+        "x": 339,
+        "z": 154
+    },
+    "noisy_fidelity": null,
+    "t_depth": 286,
+    "optimized_t_count": 1892,
+    "optimized_num_gates": {
+        "h": 2829,
+        "t": 1892,
+        "cx": 1780,
+        "s": 1424,
+        "x": 789,
+        "sdg": 450,
+        "z": 154
+    },
+    "optimized_t_depth": 283
+}

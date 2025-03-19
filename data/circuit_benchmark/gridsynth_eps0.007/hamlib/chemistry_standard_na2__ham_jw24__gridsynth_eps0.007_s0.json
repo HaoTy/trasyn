@@ -1,0 +1,19 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "chemistry standard na2  ham jw24 ",
+    "n": 24,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.985855777985362,
+    "num_nontrivial_rotations": 676,
+    "time": 195.59487748146057,
+    "num_gates": {
+        "s": 127199,
+        "h": 36161,
+        "cx": 31071,
+        "t": 10817,
+        "x": 297
+    },
+    "noisy_fidelity": null,
+    "t_depth": 5851
+}

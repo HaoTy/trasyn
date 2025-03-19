@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "grover n4",
+    "n": 4,
+    "seed": 0,
+    "unitary_distance": 0.025608901700121568,
+    "state_fidelity": 0.9994793368171953,
+    "num_nontrivial_rotations": 26,
+    "time": 1.5846290588378906,
+    "num_gates": {
+        "s": 706,
+        "h": 627,
+        "t": 588,
+        "cx": 52,
+        "x": 24
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.9982619618324258,
+        "1e-05": 0.987381660850926,
+        "0.0001": 0.8857561926387068
+    },
+    "t_depth": 400,
+    "optimized_t_count": 556,
+    "optimized_num_gates": {
+        "s": 718,
+        "h": 627,
+        "t": 556,
+        "cx": 52,
+        "x": 24
+    },
+    "optimized_t_depth": 394
+}

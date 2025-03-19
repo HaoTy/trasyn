@@ -1,0 +1,19 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "discreteoptimization tsp tsp ncity-10  tsp prob-pr76 ncity-10 enc-unary ",
+    "n": 100,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 980,
+    "time": 7.403235912322998,
+    "num_gates": {
+        "h": 19967,
+        "t": 19272,
+        "s": 10660,
+        "cx": 1827,
+        "x": 367
+    },
+    "noisy_fidelity": null,
+    "t_depth": 1594
+}

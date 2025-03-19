@@ -1,0 +1,28 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "binaryoptimization max3sat uf100-ham  2-uf100-0601 cnf-46-res ",
+    "n": 46,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 284,
+    "time": 1.9127154350280762,
+    "num_gates": {
+        "h": 5872,
+        "t": 5596,
+        "s": 3524,
+        "cx": 430,
+        "x": 170
+    },
+    "noisy_fidelity": null,
+    "t_depth": 1122,
+    "optimized_t_count": 5506,
+    "optimized_num_gates": {
+        "h": 5872,
+        "t": 5506,
+        "s": 3562,
+        "cx": 430,
+        "x": 170
+    },
+    "optimized_t_depth": 1103
+}

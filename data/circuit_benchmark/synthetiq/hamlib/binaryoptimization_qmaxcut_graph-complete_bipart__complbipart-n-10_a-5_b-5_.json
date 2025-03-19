@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "776",
+    "benchmark_file": "data/qasm_transpiled_u3/hamlib/binaryoptimization_qmaxcut_graph-complete_bipart__complbipart-n-10_a-5_b-5__transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 69,
+    "n": 10,
+    "num_gates": {
+        "h": 655,
+        "tdg": 305,
+        "t": 292,
+        "cx": 180,
+        "s": 130,
+        "sdg": 71
+    },
+    "unitary_distance": 0.3361985834766159,
+    "state_fidelity": 0.8934435778322997,
+    "num_nontrivial_rotations": 69,
+    "time": 273.30447220802307,
+    "benchmark_id": "binaryoptimization_qmaxcut_graph-complete_bipart__complbipart-n-10_a-5_b-5__transpiled_u3"
+}

@@ -1,0 +1,19 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "discreteoptimization maxkcut ham-gray-color02-will199gpia k-3  will199gpia n-60 rinst-8 ",
+    "n": 120,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 1512,
+    "time": 2.651820659637451,
+    "num_gates": {
+        "t": 28899,
+        "h": 28554,
+        "s": 17492,
+        "cx": 2095,
+        "x": 67
+    },
+    "noisy_fidelity": null,
+    "t_depth": 3445
+}

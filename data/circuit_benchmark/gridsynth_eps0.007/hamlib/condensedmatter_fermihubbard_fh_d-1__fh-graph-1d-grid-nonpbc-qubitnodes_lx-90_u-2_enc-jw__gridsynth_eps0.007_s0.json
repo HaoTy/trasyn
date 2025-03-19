@@ -1,0 +1,28 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "condensedmatter fermihubbard fh d-1  fh-graph-1d-grid-nonpbc-qubitnodes lx-90 u-2 enc-jw ",
+    "n": 180,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 626,
+    "time": 0.9976401329040527,
+    "num_gates": {
+        "h": 15939,
+        "s": 15220,
+        "t": 13772,
+        "cx": 1681,
+        "x": 626
+    },
+    "noisy_fidelity": null,
+    "t_depth": 440,
+    "optimized_t_count": 13730,
+    "optimized_num_gates": {
+        "h": 15939,
+        "s": 15235,
+        "t": 13730,
+        "cx": 1681,
+        "x": 626
+    },
+    "optimized_t_depth": 439
+}

@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "chemistry standard lih  ham parity-4 ",
+    "n": 4,
+    "seed": 0,
+    "unitary_distance": 0.02157224105773768,
+    "state_fidelity": 0.9997628154669098,
+    "num_nontrivial_rotations": 18,
+    "time": 2.094700813293457,
+    "num_gates": {
+        "s": 433,
+        "h": 251,
+        "t": 197,
+        "cx": 27,
+        "x": 5
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.9992782254448842,
+        "1e-05": 0.9949296625785922,
+        "0.0001": 0.9526806165113073
+    },
+    "t_depth": 121,
+    "optimized_t_count": 197,
+    "optimized_num_gates": {
+        "s": 433,
+        "h": 251,
+        "t": 197,
+        "cx": 27,
+        "x": 5
+    },
+    "optimized_t_depth": 121
+}

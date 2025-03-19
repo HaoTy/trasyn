@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "770",
+    "benchmark_file": "data/qasm_transpiled_u3/hamlib/binaryoptimization_max3sat_uf100-ham__2-uf100-0601_cnf-46-res__transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 284,
+    "n": 46,
+    "num_gates": {
+        "h": 880,
+        "cx": 430,
+        "tdg": 405,
+        "t": 369,
+        "s": 117,
+        "sdg": 74
+    },
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 284,
+    "time": 79.00530004501343,
+    "benchmark_id": "binaryoptimization_max3sat_uf100-ham__2-uf100-0601_cnf-46-res__transpiled_u3"
+}

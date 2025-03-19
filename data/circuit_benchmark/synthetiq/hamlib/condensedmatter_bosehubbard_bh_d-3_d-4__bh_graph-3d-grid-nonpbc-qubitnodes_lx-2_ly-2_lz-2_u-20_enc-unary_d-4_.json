@@ -1,0 +1,26 @@
+{
+    "cluster": "1006635",
+    "process": "827",
+    "benchmark_file": "data/qasm_transpiled_u3/hamlib/condensedmatter_bosehubbard_bh_d-3_d-4__bh_graph-3d-grid-nonpbc-qubitnodes_lx-2_ly-2_lz-2_u-20_enc-unary_d-4__transpiled_u3.qasm",
+    "method": "synthetiq-indv-angle",
+    "epsilon": 0.05,
+    "num_circuits": 100,
+    "num_threads": 64,
+    "timeout": 10,
+    "tcount_limit": null,
+    "num_rotations": 814,
+    "n": 32,
+    "num_gates": {
+        "h": 7118,
+        "cx": 3170,
+        "tdg": 3088,
+        "t": 2881,
+        "s": 1536,
+        "sdg": 715
+    },
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 814,
+    "time": 1369.4894652366638,
+    "benchmark_id": "condensedmatter_bosehubbard_bh_d-3_d-4__bh_graph-3d-grid-nonpbc-qubitnodes_lx-2_ly-2_lz-2_u-20_enc-unary_d-4__transpiled_u3"
+}

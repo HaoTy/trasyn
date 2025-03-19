@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "chemistry standard oh  ham jw12 ",
+    "n": 12,
+    "seed": 0,
+    "unitary_distance": 0.10561393823744432,
+    "state_fidelity": 0.9969519525683362,
+    "num_nontrivial_rotations": 350,
+    "time": 34.3658652305603,
+    "num_gates": {
+        "s": 11066,
+        "h": 6926,
+        "t": 5438,
+        "cx": 1167,
+        "x": 86
+    },
+    "noisy_fidelity": {
+        "1e-06": 0.9799232881689273,
+        "1e-05": 0.8392760345028923,
+        "0.0001": 0.18067339626821333
+    },
+    "t_depth": 3314,
+    "optimized_t_count": 5418,
+    "optimized_num_gates": {
+        "s": 11072,
+        "h": 6926,
+        "t": 5418,
+        "cx": 1167,
+        "x": 86
+    },
+    "optimized_t_depth": 3300
+}

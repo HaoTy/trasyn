@@ -1,0 +1,28 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "gcm h6",
+    "n": 13,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.9904050819926434,
+    "num_nontrivial_rotations": 289,
+    "time": 2.6401119232177734,
+    "num_gates": {
+        "s": 10576,
+        "h": 6570,
+        "t": 6480,
+        "cx": 762,
+        "x": 118
+    },
+    "noisy_fidelity": null,
+    "t_depth": 5268,
+    "optimized_t_count": 5808,
+    "optimized_num_gates": {
+        "s": 10743,
+        "h": 6570,
+        "t": 5808,
+        "cx": 762,
+        "x": 118
+    },
+    "optimized_t_depth": 4847
+}

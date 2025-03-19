@@ -1,0 +1,28 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "binaryoptimization max3sat flat100-ham  4-flat100-7 cnf-90-cc ",
+    "n": 90,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 223,
+    "time": 2.760129690170288,
+    "num_gates": {
+        "h": 4777,
+        "t": 4587,
+        "s": 2940,
+        "cx": 274,
+        "x": 139
+    },
+    "noisy_fidelity": null,
+    "t_depth": 288,
+    "optimized_t_count": 4517,
+    "optimized_num_gates": {
+        "h": 4777,
+        "t": 4517,
+        "s": 2946,
+        "cx": 274,
+        "x": 139
+    },
+    "optimized_t_depth": 284
+}

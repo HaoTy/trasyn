@@ -1,0 +1,21 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "binaryoptimization qmaxcut graph-gnp k-5  gnp-k 5 n-90 rinst-02 ",
+    "n": 90,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 2880,
+    "time": 6.041348218917847,
+    "num_gates": {
+        "h": 67043,
+        "t": 57366,
+        "cx": 30589,
+        "x": 12994,
+        "s": 10661,
+        "y": 9230,
+        "z": 2038
+    },
+    "noisy_fidelity": null,
+    "t_depth": 28371
+}

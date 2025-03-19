@@ -1,0 +1,21 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "condensedmatter heisenberg heis  graph-2d-grid-nonpbc-qubitnodes lx-5 ly-58 h-2 ",
+    "n": 290,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 1609,
+    "time": 6.659258127212524,
+    "num_gates": {
+        "h": 32175,
+        "t": 30130,
+        "y": 8467,
+        "cx": 7301,
+        "x": 4352,
+        "s": 2966,
+        "z": 1455
+    },
+    "noisy_fidelity": null,
+    "t_depth": 1456
+}

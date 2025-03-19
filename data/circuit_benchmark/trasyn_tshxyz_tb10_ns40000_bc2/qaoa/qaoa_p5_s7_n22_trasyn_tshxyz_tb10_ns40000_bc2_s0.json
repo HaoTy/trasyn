@@ -1,0 +1,32 @@
+{
+    "algorithm_config": "trasyn_tshxyz_tb10_ns40000_bc2",
+    "benchmark_name": "qaoa p5 s7 n22",
+    "n": 22,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.9964343193897214,
+    "num_nontrivial_rotations": 175,
+    "time": 10.351991653442383,
+    "num_gates": {
+        "h": 3455,
+        "t": 3372,
+        "x": 610,
+        "y": 603,
+        "cx": 330,
+        "s": 129,
+        "z": 42
+    },
+    "noisy_fidelity": null,
+    "t_depth": 570,
+    "optimized_t_count": 3354,
+    "optimized_num_gates": {
+        "h": 3455,
+        "t": 3354,
+        "x": 1213,
+        "s": 739,
+        "sdg": 603,
+        "cx": 330,
+        "z": 42
+    },
+    "optimized_t_depth": 569
+}

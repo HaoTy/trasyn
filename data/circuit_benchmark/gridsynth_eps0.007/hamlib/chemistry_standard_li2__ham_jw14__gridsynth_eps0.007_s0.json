@@ -1,0 +1,28 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "chemistry standard li2  ham jw14 ",
+    "n": 14,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.9985532724752981,
+    "num_nontrivial_rotations": 113,
+    "time": 23.511318922042847,
+    "num_gates": {
+        "s": 10885,
+        "h": 3982,
+        "t": 2288,
+        "cx": 1780,
+        "x": 92
+    },
+    "noisy_fidelity": null,
+    "t_depth": 392,
+    "optimized_t_count": 2284,
+    "optimized_num_gates": {
+        "s": 10885,
+        "h": 3982,
+        "t": 2284,
+        "cx": 1780,
+        "x": 92
+    },
+    "optimized_t_depth": 392
+}

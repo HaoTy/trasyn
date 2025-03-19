@@ -1,0 +1,28 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "chemistry vibrational all-vib-hc3h2cn  mu y prime enc stdbinary dvalues 4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4-4 ",
+    "n": 24,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": 0.999438457049977,
+    "num_nontrivial_rotations": 40,
+    "time": 4.592331647872925,
+    "num_gates": {
+        "s": 1424,
+        "h": 894,
+        "t": 769,
+        "cx": 36,
+        "x": 3
+    },
+    "noisy_fidelity": null,
+    "t_depth": 65,
+    "optimized_t_count": 741,
+    "optimized_num_gates": {
+        "s": 1438,
+        "h": 894,
+        "t": 741,
+        "cx": 36,
+        "x": 3
+    },
+    "optimized_t_depth": 65
+}

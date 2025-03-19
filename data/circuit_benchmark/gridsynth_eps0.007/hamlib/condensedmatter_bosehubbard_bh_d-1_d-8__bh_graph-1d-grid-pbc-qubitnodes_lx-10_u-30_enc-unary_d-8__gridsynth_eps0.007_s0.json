@@ -1,0 +1,19 @@
+{
+    "algorithm_config": "gridsynth_eps0.007",
+    "benchmark_name": "condensedmatter bosehubbard bh d-1 d-8  bh graph-1d-grid-pbc-qubitnodes lx-10 u-30 enc-unary d-8 ",
+    "n": 80,
+    "seed": 0,
+    "unitary_distance": null,
+    "state_fidelity": null,
+    "num_nontrivial_rotations": 3980,
+    "time": 12.85028338432312,
+    "num_gates": {
+        "s": 147233,
+        "h": 112397,
+        "t": 80812,
+        "cx": 51308,
+        "x": 1404
+    },
+    "noisy_fidelity": null,
+    "t_depth": 43194
+}
