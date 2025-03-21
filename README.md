@@ -1,6 +1,6 @@
-# trasyn: **t**enso**r**-based **a**rbitrary unitary **syn**thesis
+# trasyn: TensoR-based Arbitrary unitary SYNthesis
 
-This repo contains the code and data for the paper [Reducing T Gates with Unitary Synthesis](). We are actively preparing our method to be a user-friendly package.
+This repo contains the code and data for the paper [Reducing T Gates with Unitary Synthesis](https://arxiv.org/abs/2503.15843). We are actively preparing our method to be a user-friendly package.
 
 ## Reproduce Results
 Install the dependencies in `requirements.txt`. Download the [gridsynth binary](https://www.mathstat.dal.ca/~selinger/newsynth/) and put it in `src/`.  Optionally, install `cupy` to enable GPU acceleration. For the best performance, please `export CUPY_ACCELERATORS=cub` if `cub` is not the default.
