@@ -1,4 +1,0 @@
-numpy==1.26.4
-qiskit==1.2.4
-qiskit-aer==0.16.3
-pyzx==0.8.0
