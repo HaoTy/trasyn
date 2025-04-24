@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=78", "setuptools-scm[toml]>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trasyn"
+authors = [{ name = "Tianyi Hao", email = "tianyi.hao@wisc.edu" }]
+description = "trasyn: a unitary synthesis method for fault-tolerant quantum computing"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["quantum computing"]
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Quantum Computing",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+]
+dependencies = ["numpy>=1.26.4", "psutil>=6"]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+cupy-cuda11 = ["cupy-cuda11x>=13.3.0"]
+cupy-cuda12 = ["cupy-cuda12x>=13.3.0"]
+qiskit = ["qiskit>=1.2.4"]
+
+[project.scripts]
+trasyn = "trasyn.__main__:main"
+
+[project.urls]
+"Repository" = "https://github.com/haoty/trasyn"
+
+[tool.setuptools]
+packages = ["trasyn"]
+
+[tool.setuptools_scm]
+write_to = "trasyn/_version.py"
+
+[tool.black]
+line-length = 99 # override black's default line-length
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.tox
+  | venv
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+# make it compatible with black
+profile = "black"
