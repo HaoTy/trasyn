@@ -1,7 +1,6 @@
 import json
 import os
 import warnings
-from functools import reduce
 from itertools import product
 from math import log
 from typing import Literal, Sequence
@@ -35,10 +34,10 @@ AVAILABLE_GATE_SETS = [
 
 def _num_candidates(
     nonclifford_count: int | NDArray[np.int64], nonclifford_gate: Literal["t"] = "t"
-) -> int:
+) -> int | NDArray[np.int64]:
     if nonclifford_gate != "t":
         raise NotImplementedError(f"Non-Clifford gate {nonclifford_gate} is not supported yet.")
-    return np.clip(72 * 2**nonclifford_count - 48, 0, None)
+    return np.clip(72 * 2.0**nonclifford_count - 48, 0, None).astype(np.int64)
 
 
 def _substitute_duplicates(target_sequence: str, lookup_table: dict[str, str]) -> str:
@@ -55,7 +54,7 @@ def synthesize(
     nonclifford_budget: int | Sequence[int],
     error_threshold: float | None = None,
     gate_set: str = "tshxyz",
-    num_attempts: int = 30,
+    num_attempts: int = 5,
     num_samples: int | None = None,
     context: tuple[NDArray, NDArray] | None = None,
     gpu: bool = True,
@@ -81,7 +80,7 @@ def synthesize(
         added with the unique_matrices.py script. This process will be made more user-friendly
         in the future. Default is "tshxyz".
     num_attempts : int, optional
-        The number of sampling attempts per budget configuration. Default is 30.
+        The number of sampling attempts per budget configuration. Default is 5.
     num_samples : int, optional
         The number of samples to in the sampling process. If None, it is calculated based on
         available memory. Default is None.
@@ -151,11 +150,10 @@ def synthesize(
 
     MAX_COUNT = int(os.listdir(f"{ASSETS_DIR}/{gate_set}")[0].split("_")[1].split(".")[0])
     if isinstance(nonclifford_budget, int):
-        budgets = [[min(nonclifford_budget, MAX_COUNT)]]
         tensor_budget = min(11 + int(log(memsize / 2**36, 4)), MAX_COUNT)
-        while sum(budgets[-1]) < nonclifford_budget:
-            num_tensors = len(budgets[-1]) + 1
-            curr_budget = min(nonclifford_budget, tensor_budget * num_tensors)
+        budgets = [[curr_budget + 1] for curr_budget in range(min(nonclifford_budget, MAX_COUNT))]
+        for curr_budget in range(MAX_COUNT + 1, nonclifford_budget + 1):
+            num_tensors = (curr_budget - 1) // tensor_budget + 1
             budgets.append([curr_budget // num_tensors] * num_tensors)
             budgets[-1][0] = curr_budget - sum(budgets[-1][1:])
     else:
@@ -165,9 +163,6 @@ def synthesize(
                 "is not supported."
             )
         budgets = [nonclifford_budget]
-
-    if len(budgets[-1]) > 3:
-        warnings.warn("Sampling from more than three tensors may lead to performance degradation.")
 
     hs_tensor = np.load(f"{ASSETS_DIR}/{gate_set}/tensor_{MAX_COUNT}.npy")
     t_tensor = np.einsum("ipj,jk->ipk", hs_tensor, t())
@@ -195,7 +190,9 @@ def synthesize(
             if len(mps) == 1:
                 n_samples = 1
             else:
-                n_samples = memsize // (max(tsr.shape[1] * tsr.shape[2] for tsr in mps[1:]) * 2**7)
+                n_samples = memsize // (
+                    max(tsr.shape[1] * tsr.shape[2] for tsr in mps[1:]) * 2 ** (4 + len(budget))
+                )
             while n_samples:
                 try:
                     bitstring, fidelity = _sample(mps, n_samples, rng=rng)
@@ -209,8 +206,8 @@ def synthesize(
         fidelity = min(fidelity, 1)
         error = np.sqrt(1 - fidelity**2)
         if verbose:
-            print(f"{budget = }", f"Num samples: {n_samples}")
-            print(f"{error = }, {fidelity = }")
+            print(f"Budget: {budget}, Num samples: {n_samples}")
+            print(f"Error:{error}, Fidelity: {fidelity}")
         if error < best_error - 1e-5:
             best_error = error
             best_string = bitstring
@@ -237,10 +234,7 @@ def synthesize(
         duplicates = json.load(f)
 
     seqstr = _substitute_duplicates(
-        "t".join(
-            _substitute_duplicates(sequences[int(j)], duplicates)
-            for j in tuple(best_string[:-1]) + (best_string[-1],)
-        ),
+        "t".join(_substitute_duplicates(sequences[int(j)], duplicates) for j in best_string),
         duplicates,
     )
     mat = seq2mat(seqstr)

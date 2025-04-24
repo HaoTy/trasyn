@@ -53,16 +53,16 @@ def main():
         ),
     )
     parser.add_argument(
-        "--num-samples",
-        "--ns",
-        type=int,
-        help="The number of sampling attempts per budget configuration. Default is 30.",
-    )
-    parser.add_argument(
         "--num-attempts",
         "--na",
         type=int,
-        default=30,
+        default=5,
+        help="The number of attempts per budget configuration. Default is 5.",
+    )
+    parser.add_argument(
+        "--num-samples",
+        "--ns",
+        type=int,
         help=(
             "The number of samples in the sampling process. If None, it is calculated based "
             "on available memory. Default is None."

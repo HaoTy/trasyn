@@ -61,7 +61,7 @@ hththththxththththththxthththxththththththxththths 0.0005551347294707683 22
 
 - `num_attempts` : int, optional
     
-    The number of sampling attempts per budget configuration. Default is 30.
+    The number of sampling attempts per budget configuration. Default is 5.
 
 - `num_samples` : int, optional
     
@@ -98,7 +98,7 @@ $ trasyn circuit.qasm 20 -s synthesized.qasm
 
 #### Full list of flags
 ```
-usage: trasyn [-h] [-e ERROR_THRESHOLD] [-g GATE_SET] [--num-samples NUM_SAMPLES] [--num-attempts NUM_ATTEMPTS] [-c] [--seed SEED] [-v] [-s SAVE_PATH] [--skip-transpile] target budget
+usage: trasyn [-h] [-e ERROR_THRESHOLD] [-g GATE_SET] [--num-attempts NUM_ATTEMPTS] [--num-samples NUM_SAMPLES] [-c] [--seed SEED] [-v] [-s SAVE_PATH] [--skip-transpile] target budget
 
 Synthesize a single-qubit unitary or a qasm circuit to Clifford+T.
 
@@ -114,9 +114,9 @@ options:
   -g GATE_SET, --gate-set GATE_SET
                         The target gate set. Gates are listed in the order of cost. Additional gate sets can be added with the unique_matrices.py script. This process will be made more user-friendly in the future. Default is
                         'tshxyz'.
-  --num-samples NUM_SAMPLES, --ns NUM_SAMPLES
-                        The number of sampling attempts per budget configuration. Default is 30.
   --num-attempts NUM_ATTEMPTS, --na NUM_ATTEMPTS
+                        The number of sampling attempts per budget configuration. Default is 5.
+  --num-samples NUM_SAMPLES, --ns NUM_SAMPLES
                         The number of samples in the sampling process. If None, it is calculated based on available memory. Default is None.
   -c, --cpu-only        Do not use GPU for synthesis.
   --seed SEED           Random seed for reproducibility.
