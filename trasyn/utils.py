@@ -34,6 +34,52 @@ def seq2mat(gate_seq: str) -> NDArray[np.complex128]:
     return _seq2mat_cache(gate_seq)
 
 
+def to_superop(
+    matrix: NDArray[np.complex128], depolar_error_rate: float = 0
+) -> NDArray[np.complex128]:
+    # conj outer matrix to be consistent with qiskit's convention
+    return np.round(
+        (1 - 3 * depolar_error_rate / 4) * np.kron(matrix.conj(), matrix)
+        + sum(
+            depolar_error_rate
+            / 4
+            * np.kron(GATES[seq]().conj() @ matrix.conj(), GATES[seq]() @ matrix)
+            for seq in ("x", "y", "z")
+        ),
+        16,
+    )
+
+
+@lru_cache(maxsize=3**MAX_CACHE_LEN)
+def _seq2superop_cache(
+    gate_seq: str, logical_error_rates: tuple[str, float] = ()
+) -> NDArray[np.complex128]:
+    length = len(gate_seq)
+    if length == 0:
+        return np.eye(4)
+    if length == 1:
+        try:
+            gate_seq = gate_seq.lower()
+            return to_superop(GATES[gate_seq](), dict(logical_error_rates).get(gate_seq, 0))
+        except KeyError as err:
+            raise ValueError(
+                f"Unknown gate: {gate_seq}. Available gates: {', '.join(GATES)}."
+            ) from err
+    return _seq2superop_cache(gate_seq[: length // 2], logical_error_rates) @ _seq2superop_cache(
+        gate_seq[length // 2 :], logical_error_rates
+    )
+
+
+def seq2superop(
+    gate_seq: str, logical_error_rates: tuple[str, float] = ()
+) -> NDArray[np.complex128]:
+    if len(gate_seq) > MAX_CACHE_LEN:
+        return _seq2superop_cache(gate_seq[:MAX_CACHE_LEN], logical_error_rates) @ seq2superop(
+            gate_seq[MAX_CACHE_LEN:], logical_error_rates
+        )
+    return _seq2superop_cache(gate_seq, logical_error_rates)
+
+
 def trace(mat1: NDArray[np.complex128], mat2: NDArray[np.complex128]) -> float:
     return min(np.abs(np.trace(mat1 @ mat2.conj().T) / mat1.shape[0]), 1)
 
