@@ -2,7 +2,7 @@ import json
 import os
 import warnings
 from itertools import product
-from math import log
+from math import log, sqrt
 from typing import Literal, Sequence
 
 import numpy as np
@@ -22,7 +22,7 @@ except ModuleNotFoundError:
 
 from .gates import rz, t, u
 from .mps import _sample, _trace_target_unitary
-from .utils import distance, get_available_memory, seq2mat
+from .utils import distance, get_available_memory, seq2mat, seq2superop, to_superop
 
 ASSETS_DIR = f"{os.path.dirname(os.path.abspath(__file__))}/assets"
 AVAILABLE_GATE_SETS = [
@@ -56,7 +56,7 @@ def synthesize(
     gate_set: str = "tshxyz",
     num_attempts: int = 5,
     num_samples: int | None = None,
-    context: tuple[NDArray, NDArray] | None = None,
+    logical_error_rates: dict[str, float] | None = None,
     gpu: bool = True,
     rng: Generator | int | None = None,
     verbose: bool = False,
@@ -84,7 +84,7 @@ def synthesize(
     num_samples : int, optional
         The number of samples to in the sampling process. If None, it is calculated based on
         available memory. Default is None.
-    context : tuple[NDArray[np.complex128], NDArray[np.complex128]], optional
+    logical_error_rates : dict[str, float], optional
         Placeholder for an unimplemented feature.
     gpu : bool, optional
         Whether to use GPU for synthesis. Default is True.
@@ -111,7 +111,6 @@ def synthesize(
 
     Examples
     --------
-
     >>> seq, mat, err = trasyn.synthesize(trasyn.gates.t(), nonclifford_budget=10)
     >>> print(seq, err)
     t 0.0
@@ -164,11 +163,24 @@ def synthesize(
             )
         budgets = [nonclifford_budget]
 
-    hs_tensor = np.load(f"{ASSETS_DIR}/{gate_set}/tensor_{MAX_COUNT}.npy")
-    t_tensor = np.einsum("ipj,jk->ipk", hs_tensor, t())
+    with open(
+        f"{ASSETS_DIR}/{gate_set}/sequences_{MAX_COUNT}.json",
+        "r",
+        encoding="utf-8",
+    ) as f:
+        sequences = json.load(f)
 
-    if context is not None:
-        raise NotImplementedError("Context is not implemented yet.")
+    if logical_error_rates is None:
+        hs_tensor = np.load(f"{ASSETS_DIR}/{gate_set}/tensor_{MAX_COUNT}.npy")
+        t_matrix = t()
+    else:
+        t_matrix = to_superop(t(), logical_error_rates.get("t", 0))
+        logical_error_rates = tuple(logical_error_rates.items())
+        hs_tensor = np.asarray(
+            [seq2superop(seq, logical_error_rates) for seq in sequences]
+        ).transpose(1, 0, 2)
+        target_unitary = to_superop(target_unitary)
+    t_tensor = np.einsum("ipj,jk->ipk", hs_tensor, t_matrix)
 
     if rng is None or isinstance(rng, int):
         rng = np.random.default_rng(rng)
@@ -201,13 +213,14 @@ def synthesize(
                     n_samples = int(n_samples * 0.9)
         else:
             bitstring, fidelity = _sample(mps, num_samples, rng=rng)
-        if context is None:
-            fidelity /= 2
-        fidelity = min(fidelity, 1)
-        error = np.sqrt(1 - fidelity**2)
+        if logical_error_rates is None:
+            fidelity = min((fidelity / 2) ** 2, 1)
+        else:
+            fidelity = min(fidelity / 4, 1)
+        error = sqrt(1 - fidelity)
         if verbose:
             print(f"Budget: {budget}, Num samples: {n_samples}")
-            print(f"Error:{error}, Fidelity: {fidelity}")
+            print(f"Error: {error}, Fidelity: {fidelity}")
         if error < best_error - 1e-5:
             best_error = error
             best_string = bitstring
@@ -219,13 +232,6 @@ def synthesize(
             f"Error threshold {error_threshold} is not reached "
             f"by the lowest error found: {best_error}."
         )
-
-    with open(
-        f"{ASSETS_DIR}/{gate_set}/sequences_{MAX_COUNT}.json",
-        "r",
-        encoding="utf-8",
-    ) as f:
-        sequences = json.load(f)
     with open(
         f"{ASSETS_DIR}/{gate_set}/duplicates_{MAX_COUNT}.json",
         "r",
@@ -237,8 +243,15 @@ def synthesize(
         "t".join(_substitute_duplicates(sequences[int(j)], duplicates) for j in best_string),
         duplicates,
     )
-    mat = seq2mat(seqstr)
-    return seqstr, mat, distance(mat, asnumpy(target_unitary))
+    if logical_error_rates is None:
+        mat = seq2mat(seqstr)
+    else:
+        mat = seq2superop(seqstr, logical_error_rates)
+    return (
+        seqstr,
+        mat,
+        distance(mat, asnumpy(target_unitary), superop=logical_error_rates is not None),
+    )
 
 
 try:

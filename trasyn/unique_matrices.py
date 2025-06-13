@@ -6,7 +6,7 @@ import numpy as np
 
 from .gates import t
 from .synthesis import _substitute_duplicates
-from .utils import seq2mat, trace
+from .utils import fidelity, seq2mat
 
 try:
     import cupy as cp
@@ -42,7 +42,7 @@ if __name__ == "__main__":
                 matrix = seq2mat(seqstr)
                 duplicate = False
                 for existing_seq, existing_mat in zip(sequences, matrices):
-                    if not np.allclose(trace(existing_mat, matrix), 1):
+                    if not np.allclose(fidelity(existing_mat, matrix), 1):
                         continue
                     duplicate = True
                     counts = []

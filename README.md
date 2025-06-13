@@ -9,7 +9,7 @@ pip install trasyn
 ```
 
 ### GPU Acceleration
-It is highly recommended to install `cupy` for GPU acceleration:
+It is highly recommended to install `cupy` for GPU acceleration, which significantly speeds up the computation:
 ```bash
 pip install trasyn[cupy-cuda12] # or [cupy-cuda11] depending on CUDA version
 ```
@@ -91,7 +91,7 @@ $ trasyn 'rz(pi/16)' 30
 Sequence: hththththxththththththxthththxththththththxththths, Error: 0.0005551347294707683, T-count: 22
 ```
 
-Synthesize a qasm circuit (need Qiskit to be installed):
+Synthesize a qasm circuit (Qiskit needs to be installed):
 ```console
 $ trasyn circuit.qasm 20 -s synthesized.qasm
 ```

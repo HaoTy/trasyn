@@ -3,6 +3,7 @@ import os
 import subprocess
 from collections.abc import Generator, Sequence
 from functools import lru_cache
+from math import sqrt
 
 import numpy as np
 import psutil
@@ -52,7 +53,7 @@ def to_superop(
 
 @lru_cache(maxsize=3**MAX_CACHE_LEN)
 def _seq2superop_cache(
-    gate_seq: str, logical_error_rates: tuple[str, float] = ()
+    gate_seq: str, logical_error_rates: tuple[tuple[str, float]] = ()
 ) -> NDArray[np.complex128]:
     length = len(gate_seq)
     if length == 0:
@@ -71,7 +72,7 @@ def _seq2superop_cache(
 
 
 def seq2superop(
-    gate_seq: str, logical_error_rates: tuple[str, float] = ()
+    gate_seq: str, logical_error_rates: tuple[tuple[str, float]] = ()
 ) -> NDArray[np.complex128]:
     if len(gate_seq) > MAX_CACHE_LEN:
         return _seq2superop_cache(gate_seq[:MAX_CACHE_LEN], logical_error_rates) @ seq2superop(
@@ -80,12 +81,23 @@ def seq2superop(
     return _seq2superop_cache(gate_seq, logical_error_rates)
 
 
-def trace(mat1: NDArray[np.complex128], mat2: NDArray[np.complex128]) -> float:
-    return min(np.abs(np.trace(mat1 @ mat2.conj().T) / mat1.shape[0]), 1)
+def fidelity(
+    mat1: NDArray[np.complex128], mat2: NDArray[np.complex128] | None = None, superop: bool = False
+) -> float:
+    if mat2 is None:
+        entries = np.diag(mat1)
+    else:
+        entries = mat1 * mat2.conj() # transposes cancel out
+    trace_value = np.abs(np.sum(entries)) / mat1.shape[0]
+    if not superop:
+        trace_value = trace_value ** 2
+    return min(float(trace_value), 1)
 
 
-def distance(mat1: NDArray[np.complex128], mat2: NDArray[np.complex128]) -> float:
-    return np.sqrt(1 - trace(mat1, mat2) ** 2)
+def distance(
+    mat1: NDArray[np.complex128], mat2: NDArray[np.complex128] | None = None, superop: bool = False
+) -> float:
+    return sqrt(1 - fidelity(mat1, mat2, superop))
 
 
 def transpose(
