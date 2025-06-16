@@ -277,9 +277,41 @@ try:
         ]
     )[:, : _num_candidates(1)].transpose(1, 0, 2)
 
+    def num_nontrivial_rotations(circuit: QuantumCircuit) -> int:
+        """
+        Count the number of nontrivial rotations in a quantum circuit.
+        Nontrivial rotations are defined as those that cannot be exactly represented
+        by Cliffords and zero or one T gate.
+
+        Parameters
+        ----------
+        circuit : qiskit.QuantumCircuit
+            The input quantum circuit to be analyzed.
+
+        Returns
+        -------
+        int
+            The number of nontrivial rotations in the circuit.
+        """
+        num_rotations = 0
+        for op, _, _ in circuit:
+            if op.name in CONTINUOUS_GATES:
+                matrix = op.to_matrix()
+                duplicate = np.argwhere(
+                    np.isclose(
+                        np.abs(
+                            np.sum(TENSOR_1T * matrix.conj()[None, :, :], axis=(1, 2))
+                        ),  # calculate trace without matrix multiplication
+                        2,
+                    )
+                )
+                if len(duplicate) == 0:
+                    num_rotations += 1
+        return num_rotations
+
     def synthesize_qiskit_circuit(
         circuit: QuantumCircuit, u3_transpile: bool = True, **trasyn_options
-    ) -> QuantumCircuit:
+    ) -> tuple[QuantumCircuit, int, dict[tuple, str]]:
         """
         Synthesize a Qiskit circuit to a fault-tolerant gate set.
 
@@ -297,6 +329,10 @@ try:
         -------
         qiskit.QuantumCircuit
             The synthesized quantum circuit in the specified fault-tolerant gate set.
+        int
+            The number of nontrivial rotations in the transpiled circuit.
+        dict[tuple, str]
+            A dictionary mapping synthesized gate parameters to their sequences.
 
         Raises
         ------
@@ -322,31 +358,18 @@ try:
                     ),
                 ]:
                     circ = transpile(circ, basis_gates=["cx", "u3"], optimization_level=opt_lvl)
-                    num_rotations = 0
-                    for op, qbts, _ in circ:
-                        if op.name in CONTINUOUS_GATES:
-                            matrix = op.to_matrix()
-                            duplicate = np.argwhere(
-                                np.isclose(
-                                    np.abs(
-                                        np.dot(TENSOR_1T[:, 0], matrix[0].conj())
-                                        + np.dot(TENSOR_1T[:, 1], matrix[1].conj())
-                                    ),  # calculate trace without matrix multiplication
-                                    2,
-                                )
-                            )
-                            if len(duplicate) == 0:
-                                num_rotations += 1
-                    if num_rotations < best_num_rotations:
+                    if (num_rotations := num_nontrivial_rotations(circ)) < best_num_rotations:
                         best_num_rotations = num_rotations
                         best_circuit = circ
             circuit = best_circuit
+        else:
+            best_num_rotations = num_nontrivial_rotations(circuit)
 
         ft_qc = QuantumCircuit(*circuit.qregs, *circuit.cregs)
-        synthesized_gates = {}
+        synthesized_gates: dict[tuple, str] = {}
         for op, qbts, cbts in circuit:
             if op.name in CONTINUOUS_GATES:
-                if (key := tuple(op.params)) in synthesized_gates:
+                if (key := (op.name,) + tuple(op.params)) in synthesized_gates:
                     seq = synthesized_gates[key]
                 else:
                     seq = synthesize(op.to_matrix(), **trasyn_options)[0]
@@ -358,7 +381,7 @@ try:
                         raise ValueError(f"Unknown gate: {gate}") from err
             else:
                 ft_qc.append(op, qbts, cbts)
-        return ft_qc
+        return ft_qc, best_num_rotations, synthesized_gates
 
 except ImportError:
     pass
