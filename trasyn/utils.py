@@ -153,7 +153,7 @@ def get_available_memory(gpu: bool = False) -> int:
             )
             .decode()
             .strip()
-            .split()
+            .split()[:2]
         )
         memsize = int(memsize)
         if unit == "MiB":
