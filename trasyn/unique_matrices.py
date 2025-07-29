@@ -4,9 +4,9 @@ from itertools import product
 
 import numpy as np
 
-from .gates import t
-from .synthesis import _substitute_duplicates
-from .utils import fidelity, seq2mat
+from trasyn.gates import GATES
+from trasyn.synthesis import _substitute_duplicates
+from trasyn.utils import fidelity, seq2mat
 
 try:
     import cupy as cp
@@ -62,6 +62,8 @@ if __name__ == "__main__":
                     matrices = np.vstack([matrices, matrix.reshape(1, 2, 2)])
             print(matrices.shape[0])
         matrices = matrices.transpose(1, 0, 2)
+        if not os.path.exists(ASSETS_DIR):
+            os.makedirs(ASSETS_DIR)
         np.save(f"{ASSETS_DIR}tensor_0.npy", matrices)
         with open(f"{ASSETS_DIR}sequences_0.json", "w", encoding="utf-8") as file:
             json.dump(sequences, file, indent=4)
@@ -69,7 +71,7 @@ if __name__ == "__main__":
             json.dump(duplicates, file, indent=4)
         hs_sequences = sequences
 
-    t_block = np.einsum("ij,jpk->pik", t(), matrices)
+    t_block = np.einsum("ij,jpk->pik", GATES[nonclifford_gate](), matrices)
 
     for length in range(1, 16):
         print(f"{length = }")
@@ -87,7 +89,7 @@ if __name__ == "__main__":
         for (mat1, seq1), (mat2, seq2) in product(
             zip(matrices, sequences), zip(t_block, hs_sequences)
         ):
-            seqstr = _substitute_duplicates(seq1 + "t" + seq2, duplicates)
+            seqstr = _substitute_duplicates(seq1 + nonclifford_gate + seq2, duplicates)
             if seqstr in sequences:
                 continue
             matrix = mat1 @ mat2
