@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 import warnings
 from itertools import product
 from math import log, sqrt
@@ -22,9 +23,15 @@ except ModuleNotFoundError:
 
 from .gates import rz, t, u
 from .mps import _sample, _trace_target_unitary
-from .utils import distance, get_available_memory, seq2mat, seq2superop, to_superop
+from .utils import (
+    ASSETS_DIR,
+    distance,
+    get_available_memory,
+    seq2mat,
+    seq2superop,
+    to_superop,
+)
 
-ASSETS_DIR = f"{os.path.dirname(os.path.abspath(__file__))}/assets"
 AVAILABLE_GATE_SETS = [
     dir_entry
     for dir_entry in sorted(os.listdir(ASSETS_DIR))
@@ -38,6 +45,46 @@ def _num_candidates(
     if nonclifford_gate != "t":
         raise NotImplementedError(f"Non-Clifford gate {nonclifford_gate} is not supported yet.")
     return np.clip(72 * 2.0**nonclifford_count - 48, 0, None).astype(np.int64)
+
+
+TENSOR_1T = np.load(
+    *[
+        f"{ASSETS_DIR}/tshxyz/{dir_entry}"
+        for dir_entry in os.listdir(f"{ASSETS_DIR}/tshxyz")
+        if dir_entry.endswith(".npy")
+    ]
+)[:, : _num_candidates(1)].transpose(1, 0, 2)
+
+
+def _is_duplicate(matrix: NDArray[np.complex128], tensor: NDArray[np.complex128]) -> bool:
+    """
+    Check if the given matrix is a duplicate of any of the matrices in the given tensor.
+    """
+    return (
+        np.argwhere(
+            np.isclose(
+                np.abs(
+                    np.sum(tensor * matrix.conj()[None, :, :], axis=(1, 2))
+                ),  # calculate trace without matrix multiplication
+                2,
+            )
+        ).size
+        == 0
+    )
+
+
+def is_clifford(matrix: NDArray[np.complex128]) -> bool:
+    """
+    Check if the given matrix is a Clifford gate.
+    """
+    return _is_duplicate(matrix, TENSOR_1T[:, : _num_candidates(0)])
+
+
+def is_nontrivial_rotation(matrix: NDArray[np.complex128]) -> bool:
+    """
+    Check if the given matrix cannot be synthesized exactly by zero or one T gate.
+    """
+    return _is_duplicate(matrix, TENSOR_1T)
 
 
 def _substitute_duplicates(target_sequence: str, lookup_table: dict[str, str]) -> str:
@@ -269,13 +316,6 @@ try:
         "z": ZGate,
     }
     CONTINUOUS_GATES = ["rx", "ry", "rz", "u", "u1", "u2", "u3"]
-    TENSOR_1T = np.load(
-        *[
-            f"{ASSETS_DIR}/tshxyz/{dir_entry}"
-            for dir_entry in os.listdir(f"{ASSETS_DIR}/tshxyz")
-            if dir_entry.endswith(".npy")
-        ]
-    )[:, : _num_candidates(1)].transpose(1, 0, 2)
 
     def num_nontrivial_rotations(circuit: QuantumCircuit) -> int:
         """
@@ -293,21 +333,39 @@ try:
         int
             The number of nontrivial rotations in the circuit.
         """
-        num_rotations = 0
-        for op, _, _ in circuit:
-            if op.name in CONTINUOUS_GATES:
-                matrix = op.to_matrix()
-                duplicate = np.argwhere(
-                    np.isclose(
-                        np.abs(
-                            np.sum(TENSOR_1T * matrix.conj()[None, :, :], axis=(1, 2))
-                        ),  # calculate trace without matrix multiplication
-                        2,
+        return sum(
+            1
+            for inst in circuit
+            if inst.operation.name in CONTINUOUS_GATES
+            and is_nontrivial_rotation(inst.operation.to_matrix())
+        )
+
+    def transpile_circuit_to_u3(circuit: QuantumCircuit) -> QuantumCircuit:
+        """
+        Merge Rx, Ry, and Rz gates in a Qiskit circuit to U3 gates.
+        """
+        best_circuit, best_num_rotations, best_num_cx = None, sys.maxsize, sys.maxsize
+        for opt_lvl in range(4):
+            for circ in [
+                circuit,
+                PassManager([Optimize1qGatesSimpleCommutation(run_to_completion=True)]).run(
+                    transpile(
+                        circuit,
+                        basis_gates=["cx", "h", "rz", "rx"],
+                        optimization_level=opt_lvl,
                     )
-                )
-                if len(duplicate) == 0:
-                    num_rotations += 1
-        return num_rotations
+                ),
+            ]:
+                circ = transpile(circ, basis_gates=["cx", "u3"], optimization_level=opt_lvl)
+                num_rotations = num_nontrivial_rotations(circ)
+                num_cx = circ.count_ops().get("cx", 0)
+                if num_rotations < best_num_rotations or (
+                    num_rotations == best_num_rotations and num_cx < best_num_cx
+                ):
+                    best_num_rotations = num_rotations
+                    best_num_cx = num_cx
+                    best_circuit = circ
+        return best_circuit
 
     def synthesize_qiskit_circuit(
         circuit: QuantumCircuit, u3_transpile: bool = True, **trasyn_options
@@ -345,29 +403,13 @@ try:
         """
         circuit.remove_final_measurements()
         if u3_transpile:
-            best_circuit, best_num_rotations = None, np.inf
-            for opt_lvl in range(4):
-                for circ in [
-                    circuit,
-                    PassManager([Optimize1qGatesSimpleCommutation(run_to_completion=True)]).run(
-                        transpile(
-                            circuit,
-                            basis_gates=["cx", "h", "rz", "rx"],
-                            optimization_level=opt_lvl,
-                        )
-                    ),
-                ]:
-                    circ = transpile(circ, basis_gates=["cx", "u3"], optimization_level=opt_lvl)
-                    if (num_rotations := num_nontrivial_rotations(circ)) < best_num_rotations:
-                        best_num_rotations = num_rotations
-                        best_circuit = circ
-            circuit = best_circuit
-        else:
-            best_num_rotations = num_nontrivial_rotations(circuit)
+            circuit = transpile_circuit_to_u3(circuit)
+        best_num_rotations = num_nontrivial_rotations(circuit)
 
         ft_qc = QuantumCircuit(*circuit.qregs, *circuit.cregs)
         synthesized_gates: dict[tuple, str] = {}
-        for op, qbts, cbts in circuit:
+        for inst in circuit:
+            op, qbts, cbts = inst.operation, inst.qubits, inst.clbits
             if op.name in CONTINUOUS_GATES:
                 if (key := (op.name,) + tuple(op.params)) in synthesized_gates:
                     seq = synthesized_gates[key]

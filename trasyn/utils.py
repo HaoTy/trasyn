@@ -11,10 +11,11 @@ from numpy.typing import NDArray
 
 from .gates import GATES
 
-MAX_CACHE_LEN = 8
+ASSETS_DIR = f"{os.path.dirname(os.path.abspath(__file__))}/assets"
+_MAX_CACHE_LEN = 8
 
 
-@lru_cache(maxsize=3**MAX_CACHE_LEN)
+@lru_cache(maxsize=3**_MAX_CACHE_LEN)
 def _seq2mat_cache(gate_seq: str) -> NDArray[np.complex128]:
     length = len(gate_seq)
     if length == 0:
@@ -30,8 +31,8 @@ def _seq2mat_cache(gate_seq: str) -> NDArray[np.complex128]:
 
 
 def seq2mat(gate_seq: str) -> NDArray[np.complex128]:
-    if len(gate_seq) > MAX_CACHE_LEN:
-        return _seq2mat_cache(gate_seq[:MAX_CACHE_LEN]) @ seq2mat(gate_seq[MAX_CACHE_LEN:])
+    if len(gate_seq) > _MAX_CACHE_LEN:
+        return _seq2mat_cache(gate_seq[:_MAX_CACHE_LEN]) @ seq2mat(gate_seq[_MAX_CACHE_LEN:])
     return _seq2mat_cache(gate_seq)
 
 
@@ -51,7 +52,7 @@ def to_superop(
     )
 
 
-@lru_cache(maxsize=3**MAX_CACHE_LEN)
+@lru_cache(maxsize=3**_MAX_CACHE_LEN)
 def _seq2superop_cache(
     gate_seq: str, logical_error_rates: tuple[tuple[str, float]] = ()
 ) -> NDArray[np.complex128]:
@@ -74,9 +75,9 @@ def _seq2superop_cache(
 def seq2superop(
     gate_seq: str, logical_error_rates: tuple[tuple[str, float]] = ()
 ) -> NDArray[np.complex128]:
-    if len(gate_seq) > MAX_CACHE_LEN:
-        return _seq2superop_cache(gate_seq[:MAX_CACHE_LEN], logical_error_rates) @ seq2superop(
-            gate_seq[MAX_CACHE_LEN:], logical_error_rates
+    if len(gate_seq) > _MAX_CACHE_LEN:
+        return _seq2superop_cache(gate_seq[:_MAX_CACHE_LEN], logical_error_rates) @ seq2superop(
+            gate_seq[_MAX_CACHE_LEN:], logical_error_rates
         )
     return _seq2superop_cache(gate_seq, logical_error_rates)
 
@@ -87,10 +88,10 @@ def fidelity(
     if mat2 is None:
         entries = np.diag(mat1)
     else:
-        entries = mat1 * mat2.conj() # transposes cancel out
+        entries = mat1 * mat2.conj()  # transposes cancel out
     trace_value = np.abs(np.sum(entries)) / mat1.shape[0]
     if not superop:
-        trace_value = trace_value ** 2
+        trace_value = trace_value**2
     return min(float(trace_value), 1)
 
 
