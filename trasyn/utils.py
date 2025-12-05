@@ -54,7 +54,7 @@ def to_superop(
 
 @lru_cache(maxsize=3**_MAX_CACHE_LEN)
 def _seq2superop_cache(
-    gate_seq: str, logical_error_rates: tuple[tuple[str, float]] = ()
+    gate_seq: str, logical_error_rates: frozenset[tuple[str, float]] = frozenset()
 ) -> NDArray[np.complex128]:
     length = len(gate_seq)
     if length == 0:
@@ -73,7 +73,7 @@ def _seq2superop_cache(
 
 
 def seq2superop(
-    gate_seq: str, logical_error_rates: tuple[tuple[str, float]] = ()
+    gate_seq: str, logical_error_rates: frozenset[tuple[str, float]] = frozenset()
 ) -> NDArray[np.complex128]:
     if len(gate_seq) > _MAX_CACHE_LEN:
         return _seq2superop_cache(gate_seq[:_MAX_CACHE_LEN], logical_error_rates) @ seq2superop(

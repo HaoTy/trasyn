@@ -222,7 +222,7 @@ def synthesize(
         t_matrix = t()
     else:
         t_matrix = to_superop(t(), logical_error_rates.get("t", 0))
-        logical_error_rates = tuple(logical_error_rates.items())
+        logical_error_rates = frozenset(logical_error_rates.items())
         hs_tensor = np.asarray(
             [seq2superop(seq, logical_error_rates) for seq in sequences]
         ).transpose(1, 0, 2)
