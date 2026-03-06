@@ -132,7 +132,9 @@ def synthesize(
         The number of samples to in the sampling process. If None, it is calculated based on
         available memory. Default is None.
     logical_error_rates : dict[str, float], optional
-        Placeholder for an unimplemented feature.
+        A dictionary mapping gate names to their logical error rates. If provided, the synthesis
+        will minimize the overall process infidelity, which consists of the synthesis error and
+        the execution error for performing the gates. Default is None.
     gpu : bool, optional
         Whether to use GPU for synthesis. Default is True.
     rng : numpy.random.Generator | int, optional
