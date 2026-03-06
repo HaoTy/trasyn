@@ -222,13 +222,14 @@ def synthesize(
     if logical_error_rates is None:
         hs_tensor = np.load(f"{ASSETS_DIR}/{gate_set}/tensor_{MAX_COUNT}.npy")
         t_matrix = t()
+        target = target_unitary
     else:
         t_matrix = to_superop(t(), logical_error_rates.get("t", 0))
         logical_error_rates = frozenset(logical_error_rates.items())
         hs_tensor = np.asarray(
             [seq2superop(seq, logical_error_rates) for seq in sequences]
         ).transpose(1, 0, 2)
-        target_unitary = to_superop(target_unitary)
+        target = to_superop(target_unitary)
     t_tensor = np.einsum("ipj,jk->ipk", hs_tensor, t_matrix)
 
     if rng is None or isinstance(rng, int):
@@ -237,7 +238,7 @@ def synthesize(
     if gpu:
         hs_tensor = cp.asarray(hs_tensor)
         t_tensor = cp.asarray(t_tensor)
-        target_unitary = cp.asarray(target_unitary)
+        target = cp.asarray(target)
 
     best_error, best_string = 2, None
     for budget, _ in product(budgets, range(num_attempts)):
@@ -246,7 +247,7 @@ def synthesize(
         split_high = _num_candidates(budget[:-1] - 1)
         mps = [t_tensor[:, split_low[i] : split_high[i]] for i in range(len(budget) - 1)]
         mps.append(hs_tensor[:, : _num_candidates(budget[-1])])
-        mps = _trace_target_unitary(mps, target_unitary)
+        mps = _trace_target_unitary(mps, target)
         if num_samples is None:
             if len(mps) == 1:
                 n_samples = 1
@@ -292,15 +293,8 @@ def synthesize(
         "t".join(_substitute_duplicates(sequences[int(j)], duplicates) for j in best_string),
         duplicates,
     )
-    if logical_error_rates is None:
-        mat = seq2mat(seqstr)
-    else:
-        mat = seq2superop(seqstr, logical_error_rates)
-    return (
-        seqstr,
-        mat,
-        distance(mat, asnumpy(target_unitary), superop=logical_error_rates is not None),
-    )
+    mat = seq2mat(seqstr)
+    return seqstr, mat, distance(mat, target_unitary)
 
 
 try:
