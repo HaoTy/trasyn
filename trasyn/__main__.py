@@ -119,7 +119,7 @@ def main():
                 gpu=args.gpu,
                 rng=args.seed,
                 verbose=args.verbose,
-            ),
+            )[0],
             args.save_path,
         )
         exit(0)

@@ -3,6 +3,7 @@ import os
 import subprocess
 from collections.abc import Generator, Sequence
 from functools import lru_cache
+from math import sqrt
 
 import numpy as np
 import psutil
@@ -10,10 +11,11 @@ from numpy.typing import NDArray
 
 from .gates import GATES
 
-MAX_CACHE_LEN = 8
+ASSETS_DIR = f"{os.path.dirname(os.path.abspath(__file__))}/assets"
+_MAX_CACHE_LEN = 8
 
 
-@lru_cache(maxsize=3**MAX_CACHE_LEN)
+@lru_cache(maxsize=3**_MAX_CACHE_LEN)
 def _seq2mat_cache(gate_seq: str) -> NDArray[np.complex128]:
     length = len(gate_seq)
     if length == 0:
@@ -29,17 +31,74 @@ def _seq2mat_cache(gate_seq: str) -> NDArray[np.complex128]:
 
 
 def seq2mat(gate_seq: str) -> NDArray[np.complex128]:
-    if len(gate_seq) > MAX_CACHE_LEN:
-        return _seq2mat_cache(gate_seq[:MAX_CACHE_LEN]) @ seq2mat(gate_seq[MAX_CACHE_LEN:])
+    if len(gate_seq) > _MAX_CACHE_LEN:
+        return _seq2mat_cache(gate_seq[:_MAX_CACHE_LEN]) @ seq2mat(gate_seq[_MAX_CACHE_LEN:])
     return _seq2mat_cache(gate_seq)
 
 
-def trace(mat1: NDArray[np.complex128], mat2: NDArray[np.complex128]) -> float:
-    return min(np.abs(np.trace(mat1 @ mat2.conj().T) / mat1.shape[0]), 1)
+def to_superop(
+    matrix: NDArray[np.complex128], depolar_error_rate: float = 0
+) -> NDArray[np.complex128]:
+    # conj outer matrix to be consistent with qiskit's convention
+    return np.round(
+        (1 - 3 * depolar_error_rate / 4) * np.kron(matrix.conj(), matrix)
+        + sum(
+            depolar_error_rate
+            / 4
+            * np.kron(GATES[seq]().conj() @ matrix.conj(), GATES[seq]() @ matrix)
+            for seq in ("x", "y", "z")
+        ),
+        16,
+    )
 
 
-def distance(mat1: NDArray[np.complex128], mat2: NDArray[np.complex128]) -> float:
-    return np.sqrt(1 - trace(mat1, mat2) ** 2)
+@lru_cache(maxsize=3**_MAX_CACHE_LEN)
+def _seq2superop_cache(
+    gate_seq: str, logical_error_rates: frozenset[tuple[str, float]] = frozenset()
+) -> NDArray[np.complex128]:
+    length = len(gate_seq)
+    if length == 0:
+        return np.eye(4)
+    if length == 1:
+        try:
+            gate_seq = gate_seq.lower()
+            return to_superop(GATES[gate_seq](), dict(logical_error_rates).get(gate_seq, 0))
+        except KeyError as err:
+            raise ValueError(
+                f"Unknown gate: {gate_seq}. Available gates: {', '.join(GATES)}."
+            ) from err
+    return _seq2superop_cache(gate_seq[: length // 2], logical_error_rates) @ _seq2superop_cache(
+        gate_seq[length // 2 :], logical_error_rates
+    )
+
+
+def seq2superop(
+    gate_seq: str, logical_error_rates: frozenset[tuple[str, float]] = frozenset()
+) -> NDArray[np.complex128]:
+    if len(gate_seq) > _MAX_CACHE_LEN:
+        return _seq2superop_cache(gate_seq[:_MAX_CACHE_LEN], logical_error_rates) @ seq2superop(
+            gate_seq[_MAX_CACHE_LEN:], logical_error_rates
+        )
+    return _seq2superop_cache(gate_seq, logical_error_rates)
+
+
+def fidelity(
+    mat1: NDArray[np.complex128], mat2: NDArray[np.complex128] | None = None, superop: bool = False
+) -> float:
+    if mat2 is None:
+        entries = np.diag(mat1)
+    else:
+        entries = mat1 * mat2.conj()  # transposes cancel out
+    trace_value = np.abs(np.sum(entries)) / mat1.shape[0]
+    if not superop:
+        trace_value = trace_value**2
+    return min(float(trace_value), 1)
+
+
+def distance(
+    mat1: NDArray[np.complex128], mat2: NDArray[np.complex128] | None = None, superop: bool = False
+) -> float:
+    return sqrt(1 - fidelity(mat1, mat2, superop))
 
 
 def transpose(
@@ -95,7 +154,7 @@ def get_available_memory(gpu: bool = False) -> int:
             )
             .decode()
             .strip()
-            .split()
+            .split()[:2]
         )
         memsize = int(memsize)
         if unit == "MiB":
