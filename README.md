@@ -38,12 +38,18 @@ pip install trasyn[qiskit]
 >>> seq, mat, err = trasyn.synthesize(trasyn.gates.t(), nonclifford_budget=10)
 >>> print(seq, err)
 t 0.0
+
 >>> seq, mat, err = trasyn.synthesize([0.1, 0.2, 0.3], nonclifford_budget=20) # U(0.1, 0.2, 0.3)
 >>> print(seq, err, seq.count("t"))
 yththyththththxthththythththxththxththxththxthsz 0.0018002056473114445 19
+
 >>> seq, mat, err = trasyn.synthesize(pi / 16, 30, error_threshold=0.001) # Rz(pi/16)
 >>> print(seq, err, seq.count("t"))
 hththththxththththththxthththxththththththxththths 0.0005551347294707683 22
+
+>>> seq, mat, err = trasyn.synthesize(pi / 16, 30, logical_error_rates={"t": 1e-5}) # execution-error-aware synthesis
+>>> print(seq, err, seq.count("t"))
+hththxthythththythththththythththxthythth 0.006293156923603058 17
 ```
 
 #### Full list of `synthesize()` arguments
