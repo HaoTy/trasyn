@@ -1,6 +1,6 @@
 # trasyn: tensor-based arbitrary unitary synthesis
 
-trasyn is a gate synthesis algorithm for early fault-tolerant quantum computing. trasyn natively synthesizes arbitrary single-qubit unitaries to reduce the resulting non-Clifford gate count. For details, check out our paper [Reducing T Gates with Unitary Synthesis](https://arxiv.org/abs/2503.15843). For the original code and data for the paper, please refer to the `paper` branch.
+trasyn is a gate synthesis algorithm for early fault-tolerant quantum computing. trasyn natively synthesizes arbitrary single-qubit unitaries to reduce the resulting non-Clifford gate count. For details, check out our paper [Reducing T Gates with Unitary Synthesis](https://doi.org/10.1145/3779212.3790210). For the original code and data for the paper, please refer to the `paper` branch.
 
 ## Install
 
@@ -150,4 +150,24 @@ options:
                         Path to save the synthesized circuit. Default is '<target>_synthesized.qasm' if target is a QASM circuit.
   --skip-transpile, --st
                         Skip the transpilation step for circuit synthesis.
+```
+
+## Cite
+```bib
+@inproceedings{hao2026reducing,
+    author = {Hao, Tianyi and Xu, Amanda and Tannu, Swamit},
+    title = {Reducing T Gates with Unitary Synthesis},
+    year = {2026},
+    isbn = {9798400723599},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3779212.3790210},
+    doi = {10.1145/3779212.3790210},
+    booktitle = {Proceedings of the 31st ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2},
+    pages = {1589–1604},
+    numpages = {16},
+    keywords = {quantum computing, fault-tolerant quantum compilation, quantum gate synthesis},
+    location = {USA},
+    series = {ASPLOS '26}
+}
 ```
