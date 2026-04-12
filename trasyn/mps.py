@@ -91,9 +91,7 @@ def _trace_target_unitary(
 ) -> list[NDArray[np.complex128]]:
     if len(mps) == 1:
         # pylint: disable=too-many-function-args
-        return [
-            np.einsum("ipj,ji->p", mps[0], target_unitary.T.conj()).reshape(1, -1, 1)
-        ]
+        return [np.einsum("ipj,ji->p", mps[0], target_unitary.T.conj()).reshape(1, -1, 1)]
     mps = _swap(
         list(mps) + [target_unitary.T.conj().reshape(*target_unitary.shape, 1)],
         rank=rank,
@@ -145,7 +143,7 @@ def _sample(
                     (
                         indices[:split],
                         indices[
-                            rng.choice( # pending cupy issue #8293 to enable cupy equivalent
+                            rng.choice(  # pending cupy issue #8293 to enable cupy equivalent
                                 np.arange(split, projected_tsr.shape[0]),
                                 size=num_samples - split,
                                 replace=False,
@@ -171,9 +169,7 @@ def _sample(
             bitstrings = indices.reshape(-1, 1)
         else:
             indices, new_bits = xp.unravel_index(indices, shape)
-            bitstrings = xp.concatenate(
-                (bitstrings[indices], new_bits.reshape(-1, 1)), axis=1
-            )
+            bitstrings = xp.concatenate((bitstrings[indices], new_bits.reshape(-1, 1)), axis=1)
             del new_bits
         del indices
         shape = projected_tsr.shape[0], tsr.shape[1]
@@ -181,16 +177,14 @@ def _sample(
         #     xp.get_default_memory_pool().free_all_blocks() # Manual garbage collection causes serious slowdown
         # projected_tsr = xp.einsum("pj,jqk->pqk", projected_tsr, tsr).reshape( # einsum requires more memory and is slower
         # projected_tsr = (projected_tsr @ tsr.reshape(tsr.shape[0], -1)).reshape( # matmul should be the same as tensordot
-        projected_tsr = xp.tensordot(projected_tsr, tsr, axes=1).reshape(
-            -1, tsr.shape[2]
-        )
+        projected_tsr = xp.tensordot(projected_tsr, tsr, axes=1).reshape(-1, tsr.shape[2])
     projected_tsr = xp.abs(projected_tsr.reshape(-1))
     argmax = xp.argmax(projected_tsr)
     if len(mps) != 1:
         indices, new_bits = xp.unravel_index(argmax, shape)
-        return asnumpy(
-            xp.concatenate((bitstrings[indices], new_bits.reshape(-1)))
-        ), float(projected_tsr[argmax])
+        return asnumpy(xp.concatenate((bitstrings[indices], new_bits.reshape(-1)))), float(
+            projected_tsr[argmax]
+        )
     return np.array([int(argmax)]), float(projected_tsr[argmax])
 
 

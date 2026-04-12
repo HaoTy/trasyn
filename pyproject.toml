@@ -37,6 +37,9 @@ packages = ["trasyn"]
 [tool.setuptools_scm]
 write_to = "trasyn/_version.py"
 
+[tool.ruff]
+line-length = 99
+
 [tool.black]
 line-length = 99 # override black's default line-length
 exclude = '''
