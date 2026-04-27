@@ -129,7 +129,7 @@ def main():
         r"^\s*(" + "|".join(GATES) + r")\s*\(\s*([\d\.\s,\/\*\+\-\(\)]|pi)*\s*\)\s*",
         args.target.lower(),
     ):
-        target = eval( # pylint: disable=eval-used
+        target = eval(  # pylint: disable=eval-used
             args.target.lower(),
             GATES | {"pi": pi, "__builtins__": None},
         )

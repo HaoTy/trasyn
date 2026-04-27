@@ -76,14 +76,14 @@ if __name__ == "__main__":
     for length in range(1, 16):
         print(f"{length = }")
         with open(
-            f"{ASSETS_DIR}duplicates_{length-1}.json",
+            f"{ASSETS_DIR}duplicates_{length - 1}.json",
             "r",
             encoding="utf-8",
         ) as file:
             duplicates = json.load(file)
-        with open(f"{ASSETS_DIR}sequences_{length-1}.json", "r", encoding="utf-8") as file:
+        with open(f"{ASSETS_DIR}sequences_{length - 1}.json", "r", encoding="utf-8") as file:
             sequences = json.load(file)
-        matrices = np.load(f"{ASSETS_DIR}tensor_{length-1}.npy").transpose(1, 0, 2)
+        matrices = np.load(f"{ASSETS_DIR}tensor_{length - 1}.npy").transpose(1, 0, 2)
         matrices = cp.asarray(matrices)
         t_block = cp.asarray(t_block)
         for (mat1, seq1), (mat2, seq2) in product(

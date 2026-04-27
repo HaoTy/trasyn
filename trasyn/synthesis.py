@@ -32,27 +32,30 @@ from .utils import (
     to_superop,
 )
 
-AVAILABLE_GATE_SETS = [
-    dir_entry
-    for dir_entry in sorted(os.listdir(ASSETS_DIR))
-    if os.path.isdir(path := f"{ASSETS_DIR}/{dir_entry}")
-]
+AVAILABLE_GATE_SETS = [f.name for f in ASSETS_DIR.iterdir()]
 
 
 def _num_candidates(
     nonclifford_count: int | NDArray[np.int64], nonclifford_gate: Literal["t"] = "t"
 ) -> int | NDArray[np.int64]:
-    if nonclifford_gate != "t":
-        raise NotImplementedError(f"Non-Clifford gate {nonclifford_gate} is not supported yet.")
-    return np.clip(72 * 2.0**nonclifford_count - 48, 0, None).astype(np.int64)
+    match nonclifford_gate:
+        case "t":
+            a, b, c = 72, 2.0, 48
+        case "k":
+            a, b, c = 12, 4.0, 24
+        case _:
+            raise NotImplementedError(
+                f"Non-Clifford gate {nonclifford_gate} is not supported yet."
+            )
+    return np.clip(a * b**nonclifford_count - c, 0, None).astype(np.int64)
 
 
 TENSOR_1T = np.load(
-    *[
-        f"{ASSETS_DIR}/tshxyz/{dir_entry}"
-        for dir_entry in os.listdir(f"{ASSETS_DIR}/tshxyz")
-        if dir_entry.endswith(".npy")
-    ]
+    next(
+        iter(
+            (ASSETS_DIR / "tshxyz").glob("*.npy"),
+        )
+    )
 )[:, : _num_candidates(1)].transpose(1, 0, 2)
 
 
@@ -202,14 +205,19 @@ def synthesize(
         if verbose:
             print(f"Available memory: {memsize}")
 
-    MAX_COUNT = int(os.listdir(f"{ASSETS_DIR}/{gate_set}")[0].split("_")[1].split(".")[0])
+    MAX_COUNT = int(next((ASSETS_DIR / gate_set).glob("*.json")).name.split("_")[1].split(".")[0])
     if isinstance(nonclifford_budget, int):
         tensor_budget = min(11 + int(log(memsize / 2**36, 4)), MAX_COUNT)
         budgets = [[curr_budget + 1] for curr_budget in range(min(nonclifford_budget, MAX_COUNT))]
         for curr_budget in range(MAX_COUNT + 1, nonclifford_budget + 1):
             num_tensors = (curr_budget - 1) // tensor_budget + 1
-            budgets.append([curr_budget // num_tensors] * num_tensors)
-            budgets[-1][0] = curr_budget - sum(budgets[-1][1:])
+            base_tensor_budget = curr_budget // num_tensors
+            budget_gap = curr_budget - base_tensor_budget * num_tensors
+            budgets.append(
+                [curr_budget // num_tensors + 1] * budget_gap
+                + [curr_budget // num_tensors] * (num_tensors - budget_gap)
+            )
+
     else:
         if max(nonclifford_budget) > MAX_COUNT:
             raise ValueError(
@@ -228,7 +236,7 @@ def synthesize(
     if logical_error_rates is None:
         hs_tensor = np.load(f"{ASSETS_DIR}/{gate_set}/tensor_{MAX_COUNT}.npy")
         t_matrix = t()
-        target = target_unitary
+        target = target_unitary.copy()
     else:
         t_matrix = to_superop(t(), logical_error_rates.get("t", 0))
         logical_error_rates = frozenset(logical_error_rates.items())

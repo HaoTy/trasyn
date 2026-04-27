@@ -16,6 +16,14 @@ def t() -> NDArray[np.complex128]:
     return np.array([[1, 0], [0, np.exp(1j * pi / 4)]])
 
 
+def k() -> NDArray[np.complex128]:
+    return np.array([[1, 0], [0, np.exp(1j * pi / 6)]])
+
+
+def q() -> NDArray[np.complex128]:
+    return np.array([[1, 0], [0, np.exp(1j * pi / 8)]])
+
+
 def x() -> NDArray[np.float64]:
     return np.array([[0, 1], [1, 0]])
 
@@ -62,7 +70,10 @@ def u(theta: float, phi: float, lam: float) -> NDArray[np.complex128]:
     return np.array(
         [
             [np.cos(theta / 2), -np.exp(1j * lam) * np.sin(theta / 2)],
-            [np.exp(1j * phi) * np.sin(theta / 2), np.exp(1j * (phi + lam)) * np.cos(theta / 2)],
+            [
+                np.exp(1j * phi) * np.sin(theta / 2),
+                np.exp(1j * (phi + lam)) * np.cos(theta / 2),
+            ],
         ]
     )
 
@@ -94,6 +105,8 @@ GATES = {
     "h": h,
     "s": s,
     "t": t,
+    "k": k,
+    "q": q,
     "x": x,
     "y": y,
     "z": z,

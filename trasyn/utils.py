@@ -4,6 +4,7 @@ import subprocess
 from collections.abc import Generator, Sequence
 from functools import lru_cache
 from math import sqrt
+from pathlib import Path
 
 import numpy as np
 import psutil
@@ -11,7 +12,7 @@ from numpy.typing import NDArray
 
 from .gates import GATES
 
-ASSETS_DIR = f"{os.path.dirname(os.path.abspath(__file__))}/assets"
+ASSETS_DIR = Path(__file__).parent / "assets"
 _MAX_CACHE_LEN = 8
 
 
@@ -83,7 +84,9 @@ def seq2superop(
 
 
 def fidelity(
-    mat1: NDArray[np.complex128], mat2: NDArray[np.complex128] | None = None, superop: bool = False
+    mat1: NDArray[np.complex128],
+    mat2: NDArray[np.complex128] | None = None,
+    superop: bool = False,
 ) -> float:
     if mat2 is None:
         entries = np.diag(mat1)
@@ -96,7 +99,9 @@ def fidelity(
 
 
 def distance(
-    mat1: NDArray[np.complex128], mat2: NDArray[np.complex128] | None = None, superop: bool = False
+    mat1: NDArray[np.complex128],
+    mat2: NDArray[np.complex128] | None = None,
+    superop: bool = False,
 ) -> float:
     return sqrt(1 - fidelity(mat1, mat2, superop))
 
@@ -180,8 +185,9 @@ try:
     ) -> Generator[tuple[str, QuantumCircuit], None, None]:
         for path in find_file_to_read(base_dir, exclude_keywords, exclude_filenames):
             if (filename := path.split("/")[-1]).endswith(".qasm"):
-                yield filename[:-5].lower().replace("_", " "), qasm2.load(
-                    path, custom_instructions=qasm2.LEGACY_CUSTOM_INSTRUCTIONS
+                yield (
+                    filename[:-5].lower().replace("_", " "),
+                    qasm2.load(path, custom_instructions=qasm2.LEGACY_CUSTOM_INSTRUCTIONS),
                 )
 
 except ImportError:

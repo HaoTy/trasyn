@@ -68,7 +68,7 @@ hththxthythththythththththythththxthythth 0.006293156923603058 17
     not a hard constraint; the method will return the best solution found after all
     attempts if the error threshold is not met or it is not specified. Default is None.
 
-- `gate_set` : "tsh" or "tshxyz", optional
+- `gate_set` : "tsh", "tshxyz", or "kshxyz", optional
 
     The target gate set. Gates are listed in the order of cost. Additional gate sets can be
     added with the unique_matrices.py script. This process will be made more user-friendly
